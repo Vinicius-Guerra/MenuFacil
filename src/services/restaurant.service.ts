@@ -1,9 +1,12 @@
+import { injectable } from "tsyringe";
 import { prisma } from "../database/prisma";
 import { AppError } from "../errors/appError";
 import { TPublicRestaurant, TRestaurantLoginBody, TRestaurantLoginReturn, TRestaurantRegisterBody, TRestaurantReturn, TRestaurantUpdateBody, publicRestaurantReturnSchema, restaurantReturnSchema } from "../schemas/restaurant.schema";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+
+@injectable()
 export class RestaurantService {
     async register(body: TRestaurantRegisterBody): Promise<TRestaurantReturn> {
         const existingRestaurant = await prisma.restaurant.findFirst({ where: { email: body.email }});

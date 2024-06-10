@@ -42,4 +42,4 @@ export class RecipeControllers {
 
         return res.status(204).json();
     };
-}
+};

@@ -12,3 +12,32 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Restaurant {
+  id String @id @default(uuid())
+  name String
+  description String?
+  email String @unique
+  password String
+  recipes Recipe[]
+  categories Category[]
+}
+
+model Recipe {
+  id String @id @default(uuid())
+  name String
+  description String
+  price Int
+  restauranteId String
+  restaurant Restaurant @relation(fields: [restauranteId], references: [id])
+  categoryId String?
+  category Category? @relation(fields: [categoryId], references: [id])
+}
+
+model Category {
+  id String @id @default(uuid())
+  name String
+  recipes Recipe[]
+  restauranteId String
+  restaurant Restaurant @relation(fields: [restauranteId], references: [id])
+}

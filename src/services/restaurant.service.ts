@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 
 
 @injectable()
-export class RestaurantService {
+export class RestaurantServices {
     async register(body: TRestaurantRegisterBody): Promise<TRestaurantReturn> {
         const existingRestaurant = await prisma.restaurant.findFirst({ where: { email: body.email }});
 

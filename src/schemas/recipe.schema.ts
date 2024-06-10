@@ -6,7 +6,7 @@ export const recipeSchema = z.object({
     description: z.string().optional(),
     price: z.number().positive(),
     restauranteId: z.string().min(1),
-    categoryId: z.string().optional()
+    categoryId: z.string().optional().nullable(),
 });
 
 export type TRecipe = z.infer<typeof recipeSchema>;

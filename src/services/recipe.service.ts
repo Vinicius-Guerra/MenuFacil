@@ -1,6 +1,8 @@
+import { injectable } from "tsyringe";
 import { prisma } from "../database/prisma";
 import { TRecipe, TRecipeCreateBody, TRecipeUpdateBody } from "../schemas/recipe.schema";
 
+@injectable()
 export class RecipeServices {
     async create(body: TRecipeCreateBody, restaurantId: string): Promise<TRecipe> {
         const newRecipeData = { ...body, restauranteId: restaurantId }

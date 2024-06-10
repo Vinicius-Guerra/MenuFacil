@@ -1,6 +1,6 @@
 import { prisma } from "../database/prisma";
 import { AppError } from "../errors/appError";
-import { TRestaurantLoginBody, TRestaurantLoginReturn, TRestaurantRegisterBody, TRestaurantReturn, TRestaurantUpdateBody, restaurantReturnSchema } from "../schemas/restaurant.schema";
+import { TPublicRestaurant, TRestaurantLoginBody, TRestaurantLoginReturn, TRestaurantRegisterBody, TRestaurantReturn, TRestaurantUpdateBody, publicRestaurantReturnSchema, restaurantReturnSchema } from "../schemas/restaurant.schema";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -55,5 +55,15 @@ export class RestaurantService {
         const restaurant = await prisma.restaurant.findFirst({ where: { id: restaurantId }});
 
         return restaurantReturnSchema.parse(restaurant);
-    }
-}
+    };
+
+    async getManyRestaurants(): Promise<TPublicRestaurant[]> {
+        const restaurants = await prisma.restaurant.findMany();
+
+        const publicRestaurants = restaurants.map((restaurant) => 
+            publicRestaurantReturnSchema.parse(restaurant)
+        )
+
+        return publicRestaurants;
+    };
+};

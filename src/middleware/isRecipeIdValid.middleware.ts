@@ -12,6 +12,8 @@ export class IsRecipeIdValid {
             throw new AppError("Recipe not found", 404);
         };
 
+        res.locals.recipe = recipe;
+
         next();
     };
 };

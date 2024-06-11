@@ -11,6 +11,8 @@ export class IsCategoryIdValid {
         if(!category) {
             throw new AppError("Category not found", 404);
         };
+        
+        res.locals.category = category;
 
         next();
     };

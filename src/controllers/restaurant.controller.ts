@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 import { TPublicRestaurant, TRestaurantLoginReturn, TRestaurantReturn } from "../schemas/restaurant.schema";
 
 @injectable()
-export class RestaurantController {
+export class RestaurantControllers {
     constructor(@inject("RestaurantServices") private restaurantServices: RestaurantServices) {}
 
     async register(req: Request, res: Response): Promise<Response<TRestaurantReturn>> {

@@ -16,6 +16,6 @@ categoryRouter.post("/", VerifyToken.execute, ValidateBody.execute(categoryCreat
 
 categoryRouter.get("/:restauranteId", IsRestaurantIdValid.execute, (req, res) => categoryControllers.getMany(req, res));
 
-categoryRouter.patch("/:id", VerifyToken.execute, ValidateBody.execute(categoryUpdateBodySchema), (req, res) => categoryControllers.create(req, res));
+categoryRouter.patch("/:id", VerifyToken.execute, ValidateBody.execute(categoryUpdateBodySchema), (req, res) => categoryControllers.update(req, res));
 
-categoryRouter.delete("/:id", VerifyToken.execute, (req, res) => categoryControllers.create(req, res));
+categoryRouter.delete("/:id", VerifyToken.execute, (req, res) => categoryControllers.delete(req, res));

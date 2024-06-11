@@ -1,11 +1,13 @@
 import { injectable } from "tsyringe";
 import { prisma } from "../database/prisma";
-import { TRecipe, TRecipeCreateBody, TRecipeUpdateBody } from "../schemas/recipe.schema";
+import { TRecipe, TRecipeCreateBody, TRecipeUpdateBody, recipeCreateBodySchema } from "../schemas/recipe.schema";
 
 @injectable()
 export class RecipeServices {
     async create(body: TRecipeCreateBody, restauranteId: string): Promise<TRecipe> {
-        const newRecipeData = { ...body, restauranteId }
+        const validatedBody = recipeCreateBodySchema.parse(body);
+
+        const newRecipeData: any = { ...validatedBody, restauranteId }
         
         const recipe = await prisma.recipe.create({ data: newRecipeData })
 

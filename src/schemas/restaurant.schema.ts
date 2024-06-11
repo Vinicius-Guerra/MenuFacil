@@ -9,7 +9,7 @@ export const restaurantSchema = z.object({
 });
 export type TRestaurant = z.infer<typeof restaurantSchema>;
 
-export const  restaurantRegisterBodySchema = restaurantSchema.omit({ id: true, description: true });
+export const restaurantRegisterBodySchema = restaurantSchema.omit({ id: true });
 export type TRestaurantRegisterBody = z.infer<typeof restaurantRegisterBodySchema>;
 
 export const restaurantLoginBodySchema = restaurantSchema.pick({ email: true, password: true });

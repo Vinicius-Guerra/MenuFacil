@@ -7,6 +7,7 @@ import helmet from "helmet";
 import { HandleErrors } from "./middleware/handleErrors";
 import { restaurantRouter } from "./routes/restaurant.routes";
 import { recipeRouter } from "./routes/recipe.routes";
+import { categoryRouter } from "./routes/category.routes";
 
 export const app = express();
 
@@ -19,6 +20,7 @@ app.use(json());
 //routes
 app.use("/restaurants", restaurantRouter);
 app.use("/recipes", recipeRouter);
+app.use("/categories", categoryRouter);
 
 //errors
 app.use(HandleErrors.execute);

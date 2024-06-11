@@ -15,7 +15,7 @@ const recipeControllers = container.resolve(RecipeControllers);
 
 recipeRouter.post("/", ValidateBody.execute(recipeCreateBodySchema), VerifyToken.execute, (req, res) => recipeControllers.create(req,res));
 
-recipeRouter.get("/:id", (req, res) => recipeControllers.getOne(req, res));
+recipeRouter.get("/:id", IsRecipeIdValid.execute,(req, res) => recipeControllers.getOne(req, res));
 
 recipeRouter.get("/restaurante/:restauranteId", IsRestaurantIdValid.execute, (req, res) => recipeControllers.getMany(req, res));
 

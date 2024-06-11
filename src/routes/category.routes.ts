@@ -7,6 +7,7 @@ import { ValidateBody } from "../middleware/validateBody.middleware";
 import { categoryCreateBodySchema, categoryUpdateBodySchema } from "../schemas/category.schema";
 import { IsRestaurantIdValid } from "../middleware/isRestaurantIdValid.middleware";
 import { IsCategoryIdValid } from "../middleware/isCategoryIdValid.middleware";
+import { IsRestaurantCategoryOwner } from "../middleware/isRestaurantCategoryOwner.middleware";
 
 export const categoryRouter = Router();
 
@@ -17,6 +18,6 @@ categoryRouter.post("/", VerifyToken.execute, ValidateBody.execute(categoryCreat
 
 categoryRouter.get("/:restauranteId", IsRestaurantIdValid.execute, (req, res) => categoryControllers.getMany(req, res));
 
-categoryRouter.patch("/:id", VerifyToken.execute, ValidateBody.execute(categoryUpdateBodySchema), IsCategoryIdValid.execute,(req, res) => categoryControllers.update(req, res));
+categoryRouter.patch("/:id", VerifyToken.execute, ValidateBody.execute(categoryUpdateBodySchema), IsCategoryIdValid.execute, IsRestaurantCategoryOwner.execute,(req, res) => categoryControllers.update(req, res));
 
-categoryRouter.delete("/:id", VerifyToken.execute, IsCategoryIdValid.execute, (req, res) => categoryControllers.delete(req, res));
+categoryRouter.delete("/:id", VerifyToken.execute, IsCategoryIdValid.execute, IsRestaurantCategoryOwner.execute,(req, res) => categoryControllers.delete(req, res));

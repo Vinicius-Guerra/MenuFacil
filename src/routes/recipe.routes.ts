@@ -5,6 +5,7 @@ import { RecipeControllers } from "../controllers/recipe.controller";
 import { ValidateBody } from "../middleware/validateBody.middleware";
 import { recipeCreateBodySchema, recipeUpdateBodySchema } from "../schemas/recipe.schema";
 import { VerifyToken } from "../middleware/verifyToken.middleware";
+import { IsRestaurantIdValid } from "../middleware/isRestaurantIdValid.middleware";
 
 export const recipeRouter = Router();
 
@@ -15,7 +16,7 @@ recipeRouter.post("/", ValidateBody.execute(recipeCreateBodySchema), VerifyToken
 
 recipeRouter.get("/:id", (req, res) => recipeControllers.getOne(req, res));
 
-recipeRouter.get("/restaurante/:restauranteId", (req, res) => recipeControllers.getMany(req, res));
+recipeRouter.get("/restaurante/:restauranteId", IsRestaurantIdValid.execute, (req, res) => recipeControllers.getMany(req, res));
 
 recipeRouter.patch("/:id", ValidateBody.execute(recipeUpdateBodySchema), VerifyToken.execute, (req, res) => recipeControllers.update(req, res));
 

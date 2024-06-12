@@ -1,7 +1,7 @@
-import { container } from "tsyringe"
-import { RecipeServices } from "../../services/recipe.service"
-import { prismaMock } from "../__mocks__/prisma";
-import { recipeMock } from "../__mocks__/recipe.mocks";
+import { container } from "tsyringe";
+import { RecipeServices } from "../../../services/recipe.service";
+import { recipeMock } from "../../__mocks__/recipe.mocks";
+import { prismaMock } from "../../__mocks__/prisma";
 
 describe("Unit test: get one recipe", () => {
     it("get one recipe should work correctly", async () => {

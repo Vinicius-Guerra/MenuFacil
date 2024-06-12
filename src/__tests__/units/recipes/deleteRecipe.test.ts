@@ -1,6 +1,6 @@
 import { container } from "tsyringe";
-import { RecipeServices } from "../../services/recipe.service";
-import { recipeMock } from "../__mocks__/recipe.mocks";
+import { RecipeServices } from "../../../services/recipe.service";
+import { recipeMock } from "../../__mocks__/recipe.mocks";
 
 describe("Unit test: delete recipe", () => {
     it("delete recipe should work correctly", async () => {

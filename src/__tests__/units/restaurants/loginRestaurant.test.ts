@@ -1,7 +1,8 @@
 import { container } from "tsyringe";
-import { RestaurantServices } from "../../services/restaurant.service";
-import { restaurantLoginBodyMock, restaurantLoginWrongPasswordBodyMock, restaurantMock, restaurantReturnMock } from "../__mocks__/restaurant.mocks";
-import { prismaMock } from "../__mocks__/prisma";
+import { RestaurantServices } from "../../../services/restaurant.service";
+import { restaurantLoginBodyMock, restaurantLoginWrongPasswordBodyMock, restaurantMock, restaurantReturnMock } from "../../__mocks__/restaurant.mocks";
+import { prismaMock } from "../../__mocks__/prisma";
+
 
 describe("Unit test: login restaurant", () => {
     it("login restaurant should work correctly", async () => {

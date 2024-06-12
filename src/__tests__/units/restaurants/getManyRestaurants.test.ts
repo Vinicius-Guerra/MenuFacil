@@ -1,7 +1,7 @@
 import { container } from "tsyringe";
-import { RestaurantServices } from "../../services/restaurant.service";
-import { prismaMock } from "../__mocks__/prisma";
-import { restaurantListMock, restaurantReturnListMock } from "../__mocks__/restaurant.mocks";
+import { RestaurantServices } from "../../../services/restaurant.service";
+import { restaurantListMock, restaurantReturnListMock } from "../../__mocks__/restaurant.mocks";
+import { prismaMock } from "../../__mocks__/prisma";
 
 describe("Unit test: get many restaurants", () => {
     it("get many restaurants should work correctly", async () => {

@@ -21,7 +21,7 @@ export class RecipeServices {
     }
 
     async getMany(restauranteId: string, categoryId?: string): Promise<TRecipe[]> {
-        const recipes = await prisma.recipe.findMany({ where: { restauranteId }});
+        const recipes = await prisma.recipe.findMany({ where: { restauranteId, categoryId }});
 
         return recipes;
     };

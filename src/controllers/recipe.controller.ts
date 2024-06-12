@@ -24,7 +24,7 @@ export class RecipeControllers {
     async getMany(req: Request, res: Response): Promise<Response<TRecipe[]>> {
         const restauranteId = req.params.restauranteId;
         const categoryId = req.query.categoryId;
-        const response = await this.recipeServices.getMany(restauranteId, String(categoryId));
+        const response = await this.recipeServices.getMany(restauranteId, categoryId ? String(categoryId) : categoryId);
 
         return res.status(200).json(response);
     };

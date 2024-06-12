@@ -18,6 +18,22 @@ export const secondRecipeMock = {
     categoryId: "53fdb7ee-c5ab-408c-bd88-8e3f948f18e5",
 };
 
+export const updatedRecipeMock = {
+    id: recipeMock.id,
+    name: "Recipe Updated",
+    description: "This is a recipe update",
+    price: 2345,
+    restaurantId: recipeMock.restaurantId,
+    categoryId: "d0c4b75e-43d6-4995-8f7a-7cab8b2bafef",
+};
+
+export const updatedRecipeBodyMock = {
+    name: updatedRecipeMock.name,
+    description: updatedRecipeMock.description,
+    price: updatedRecipeMock.price,
+    categoryId: updatedRecipeMock.categoryId,
+};
+
 export const recipeListMock = [
     recipeMock,
     secondRecipeMock

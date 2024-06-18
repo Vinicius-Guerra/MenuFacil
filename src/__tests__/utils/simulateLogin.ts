@@ -10,3 +10,9 @@ export const simulateLogin = async () => {
 
     return { restaurant, token };
 };
+
+export const invalidToken = () => {
+    const token = jwt.sign({}, "1234");
+
+    return token;
+}

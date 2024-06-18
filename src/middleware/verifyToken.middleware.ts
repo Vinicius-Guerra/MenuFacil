@@ -19,7 +19,7 @@ export class VerifyToken {
     
             next();
         } catch(error) {
-            throw new AppError("Invalid token", 403);
+            throw new AppError("Invalid token", 401);
         };
 
     };

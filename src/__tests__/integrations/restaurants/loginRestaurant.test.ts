@@ -1,14 +1,13 @@
 import { prisma } from "../../../database/prisma"
 import { restauranWrongLoginBodyMock, restaurantCreateDataMock, restaurantLoginBodyMock, restaurantWrongCreateBodyMock } from "../../__mocks__/restaurant.mocks"
 import { request } from "../../utils/request";
+import { restaurantDefaultExpects } from "../../utils/restaurantDefaultExpects";
 
 describe("Integration test: login restaurant", () => {
     it("sould be able to login successfully", async () => {
         const restaurantData = await restaurantCreateDataMock();
 
-        const user = await prisma.restaurant.create({ data: restaurantData });
-
-        
+        const restaurant: any = await prisma.restaurant.create({ data: restaurantData });
 
         const data = await request
             .post("/restaurants/login")
@@ -17,11 +16,7 @@ describe("Integration test: login restaurant", () => {
             .then((response) => response.body);
 
         expect(data.accessToken).toBeDefined();
-        expect(data.restaurant).toBeDefined();
-        expect(data.restaurant.id).toBe(user.id);
-        expect(data.restaurant.name).toBe(user.name);
-        expect(data.restaurant.email).toBe(user.email);
-        expect(data.restaurant.description).toBe(user.description);
+        restaurantDefaultExpects(data.restaurant, restaurant)
         expect(data.restaurant.password).toBeUndefined();
     });
 

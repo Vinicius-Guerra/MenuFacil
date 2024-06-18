@@ -3,7 +3,7 @@ import z from "zod";
 export const restaurantSchema = z.object({
     id: z.string().min(1),
     name: z.string().min(1),
-    description: z.string().optional(),
+    description: z.string().optional().nullable(),
     email: z.string().min(1).email(),
     password: z.string().min(1),
 });

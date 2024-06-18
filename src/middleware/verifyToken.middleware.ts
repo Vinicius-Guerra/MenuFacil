@@ -6,16 +6,21 @@ export class VerifyToken {
     static execute(req: Request, res: Response, next: NextFunction) {
         const authorization = req.headers.authorization;
 
-        const token = authorization?.replace("Bearer", "");
+        const token = authorization?.replace("Bearer", "").trim();
 
         if(!token) {
             throw new AppError("Token is required", 401);
         };
 
-        jwt.verify(token, process.env.JWT_SECRET as string);
+        try {
+            const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
+    
+            res.locals.decode = decoded;
+    
+            next();
+        } catch(error) {
+            throw new AppError("Invalid token", 403);
+        };
 
-        res.locals.decode = jwt.decode(token);
-
-        next();
     };
 };

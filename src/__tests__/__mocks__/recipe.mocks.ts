@@ -9,6 +9,14 @@ export const recipeMock = {
     categoryId: null,
 };
 
+export const restaurantRecipeCreateDataMock = (restauranteId: string) => ({
+    name: "Recipe",
+    description: "This is a recipe",
+    price: 1234,
+    restauranteId,
+    categoryId: null,
+});
+
 export const secondRecipeMock = {
     id: "98d5e209-d0b6-4dda-b75d-fe1551d6fde4",
     name: "Recipe 2",

@@ -34,6 +34,13 @@ export const updatedRecipeBodyMock = {
     categoryId: updatedRecipeMock.categoryId,
 };
 
+export const recipeWrongCreateBodyMock = {
+    name: 123,
+    description: 123,
+    price: "Text",
+    categoryId: 123
+}
+
 export const recipeListMock = [
     recipeMock,
     secondRecipeMock

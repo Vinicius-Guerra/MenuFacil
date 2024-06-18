@@ -37,10 +37,10 @@ describe("Integration test: login restaurant", () => {
 
         await prisma.restaurant.create({ data: restaurantData });
 
-        await request
+        const response = await request
             .post("/restaurants/login")
             .send(restaurantWrongCreateBodyMock)
-            .expect(401);
+            .expect(409);
     });
 
     it("should throw error when missing body parameter", async () => {

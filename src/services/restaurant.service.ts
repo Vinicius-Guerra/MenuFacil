@@ -37,7 +37,7 @@ export class RestaurantServices {
         const comparePassword = await bcrypt.compare(body.password, restaurant.password);
 
         if(!comparePassword) {
-            throw new AppError("Email and password doesn't match", 401);
+            throw new AppError("Email and password doesn't match", 409);
         };
         
         const token = jwt.sign({ id: restaurant.id }, process.env.JWT_SECRET as string);

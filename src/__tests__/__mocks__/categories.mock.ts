@@ -1,41 +1,42 @@
 import { restaurant } from "./restaurant.mocks";
 
 export const categoryMock = {
-    id: "4b14b27a-284d-4553-9427-9e31a62255fe",
-    name: "Category",
-    restaurantId: restaurant.id,
+   id: "d4046a93-3e73-4720-90c3-17461e6285ca",
+   name: "Category",
+   restauranteId: restaurant.id,
+};
+
+export const secondCategoryMock = {
+   id: "d4046a93-3e73-4720-90c3-17461e6285cb",
+   name: "SecondCategory",
+   restauranteId: restaurant.id,
+};
+
+export const restaurantCategoryCreateDataMock = (restauranteId: string) => ({
+   name: "Category",
+   restauranteId,
+});
+
+export const updatedCategoryMock = {
+   id: categoryMock.id,
+   name: "Category update",
+   restauranteId: categoryMock.id,
 };
 
 export const categoryCreateBodyMock = {
-    name: categoryMock.name
+   name: categoryMock.name,
 };
 
 export const categoryWrongCreateBodyMock = {
-    name: 123,
- };
- 
- export const categoryWrongUpdateBodyMock = {
-    name: 123,
- };
-
-export const secondCategoryMock = {
-    id: "4b14b27a-284d-4553-9427-9e31a62255fa",
-    name: "Second Category",
-    restaurantId: restaurant.id,
+   name: 123,
 };
 
-
-export const categoryListMock = [
-    categoryMock,
-    secondCategoryMock
-];
-
-export const updatedCategoryMock = {
-    id: categoryMock.id,
-    name: "Category Update",
-    restaurantId: categoryMock.restaurantId
+export const categoryWrongUpdateBodyMock = {
+   name: 123,
 };
 
-export const updatedCategoryBodyMock = { 
-    name: updatedCategoryMock.name,
+export const categoryListMock = [categoryMock, secondCategoryMock];
+
+export const categoryUpdateBodyMock = {
+   name: updatedCategoryMock.name,
 };

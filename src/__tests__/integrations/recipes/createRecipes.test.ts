@@ -36,7 +36,7 @@ describe("Integration test: create recipe", () => {
             ...recipeCreateBodyMock,
             restauranteId: restaurant.id,
             categoryId: category.id
-        };
+        }
 
         const data = await request
             .post("/recipes")
@@ -82,17 +82,19 @@ describe("Integration test: create recipe", () => {
     });
 
     it("should throw error when invalid data type in body parameter", async () => {
+        const { token } = await simulateLogin();
+  
         const data = await request
-            .post("/recipes")
-            .send(recipeWrongCreateBodyMock)
-            .expect(409)
-            .then((response) => response.body);
-        
+           .post("/recipes")
+           .set("Authorization", `Bearer ${token}`)
+           .send(recipeWrongCreateBodyMock)
+           .expect(409)
+           .then((response) => response.body);
+  
         expect(data.issues).toHaveLength(4);
-
         expect(data.issues[0].message).toBe("Expected string, received number");
         expect(data.issues[1].message).toBe("Expected string, received number");
         expect(data.issues[2].message).toBe("Expected number, received string");
         expect(data.issues[3].message).toBe("Expected string, received number");
-    });
+     });
 });

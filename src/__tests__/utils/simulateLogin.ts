@@ -11,6 +11,12 @@ export const simulateLogin = async () => {
     return { restaurant, token };
 };
 
+export const wrongUserToken = () => {
+    const token = jwt.sign({ id: "12345678abc" }, process.env.JWT_SECRET as string);
+
+    return token;
+}
+
 export const invalidToken = () => {
     const token = jwt.sign({}, "1234");
 

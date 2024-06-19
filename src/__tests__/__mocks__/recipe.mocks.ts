@@ -42,7 +42,21 @@ export const updatedRecipeBodyMock = {
     categoryId: updatedRecipeMock.categoryId,
 };
 
+export const updatedRecipeDataMock = (categoryId: string | null) => ({
+    name: updatedRecipeMock.name,
+    description: updatedRecipeMock.description,
+    price: updatedRecipeMock.price,
+    categoryId
+});
+
 export const recipeWrongCreateBodyMock = {
+    name: 123,
+    description: 123,
+    price: "Text",
+    categoryId: 123
+}
+
+export const recipeWrongUpdateBodyMock = {
     name: 123,
     description: 123,
     price: "Text",

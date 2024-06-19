@@ -14,7 +14,7 @@ export const categoryRouter = Router();
 container.registerSingleton("CategoryServices", CategoryServices);
 const categoryControllers = container.resolve(CategoryControllers);
 
-categoryRouter.post("/", VerifyToken.execute, ValidateBody.execute(categoryCreateBodySchema), (req, res) => categoryControllers.create(req, res));
+categoryRouter.post("/", ValidateBody.execute(categoryCreateBodySchema), VerifyToken.execute,(req, res) => categoryControllers.create(req, res));
 
 categoryRouter.get("/:restauranteId", IsRestaurantIdValid.execute, (req, res) => categoryControllers.getMany(req, res));
 

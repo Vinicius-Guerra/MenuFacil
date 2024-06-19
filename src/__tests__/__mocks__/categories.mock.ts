@@ -10,6 +10,14 @@ export const categoryCreateBodyMock = {
     name: categoryMock.name
 };
 
+export const categoryWrongCreateBodyMock = {
+    name: 123,
+ };
+ 
+ export const categoryWrongUpdateBodyMock = {
+    name: 123,
+ };
+
 export const secondCategoryMock = {
     id: "4b14b27a-284d-4553-9427-9e31a62255fa",
     name: "Second Category",

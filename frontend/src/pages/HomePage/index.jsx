@@ -2,8 +2,11 @@ import { Header } from "../../components/Header"
 
 export const HomePage = () => {
     return (
-        <div>
+        <body>
             <Header />
-        </div>
+            <main>
+                
+            </main>
+        </body>
     )
 }

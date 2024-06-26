@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+.forWhin {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: #ffffff;
+
+    .title {
+        font-size: 2.5rem;
+        color: #ec5154;
+        margin-bottom: 2rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        background: linear-gradient(to right, #ec5154, #ff7e67);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .cardContainer {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        list-style: none;
+        padding: 0;
+    }
+
+    .card {
+        background: #fff;
+        border: 1px solid #eaeaea;
+        border-radius: 1rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        max-width: 300px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        animation: fadeInUp 0.5s ease forwards;
+        opacity: 0;
+
+        &:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cardImage {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .cardFooter {
+            font-size: 1.1rem;
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            margin-top: 1rem;
+        }
+
+        &:hover .cardImage {
+            transform: scale(1.1);
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+    .forWhin {
+        padding: 2rem 1rem;
+
+        .title {
+            font-size: 2rem;
+        }
+
+        .cardContainer {
+            flex-direction: column;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .forWhin {
+        padding: 1rem;
+
+        .title {
+            font-size: 1.5rem;
+        }
+
+        .cardContainer {
+            .card {
+                padding: 1rem;
+                .cardFooter {
+                    font-size: 0.9rem;
+                }
+            }
+        }
+    }
+}

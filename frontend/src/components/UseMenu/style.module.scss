@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+.useMenu {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: #f7f7f7;
+
+    .title {
+        font-size: 2.5rem;
+        color: #ec5154;
+        margin-bottom: 2rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .cardContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            &:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .cardImage {
+                max-width: 100%;
+                height: auto;
+                margin-bottom: 1.5rem;
+            }
+
+            .cardFooter {
+                font-size: 1.2rem;
+                color: #333;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 400;
+            }
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+    .useMenu {
+        padding: 2rem 1rem;
+
+        .title {
+            font-size: 2rem;
+        }
+
+        .cardContainer {
+            ul {
+                flex-direction: column;
+
+                .card {
+                    margin-bottom: 2rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .useMenu {
+        padding: 1rem;
+
+        .title {
+            font-size: 1.5rem;
+        }
+
+        .cardContainer {
+            ul {
+                .card {
+                    padding: 1rem;
+                    .cardFooter {
+                        font-size: 0.9rem;
+                    }
+                }
+            }
+        }
+    }
+}

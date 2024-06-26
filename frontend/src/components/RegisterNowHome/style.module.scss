@@ -1,0 +1,45 @@
+.registerBanner {
+    background: linear-gradient(135deg, #ff7e67, #feb47b);
+    padding: 3rem;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1.5s ease-in-out;
+
+    .bannerTitle {
+        font-size: 2rem;
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+
+    .bannerButton {
+        display: inline-block;
+        padding: 0.75rem 2rem;
+        background-color: #fff;
+        color: #ff7e67;
+        font-size: 1.2rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.3s ease, color 0.3s ease;
+
+        &:hover {
+            background-color: #ff7e67;
+            color: #fff;
+        }
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

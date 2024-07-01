@@ -19,5 +19,4 @@ restaurantRouter.get("/profile", VerifyToken.execute, (req, res) => restaurantCo
 
 restaurantRouter.patch("/", VerifyToken.execute, (req, res) => restaurantControllers.update(req, res));
 
-
 restaurantRouter.get("/", (req, res) => restaurantControllers.getManyRestaurants(req, res));

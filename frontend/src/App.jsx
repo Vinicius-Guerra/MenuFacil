@@ -1,11 +1,14 @@
+import { ToastContainer } from "react-toastify";
 import { RoutesMain } from "./routes"
-import "./styles/index.scss"
+import "react-toastify/dist/ReactToastify.css";
+import "./styles/index.scss";
 
 function App() {
 
   return (
     <>
       <RoutesMain />
+      <ToastContainer />
     </>
   )
 }

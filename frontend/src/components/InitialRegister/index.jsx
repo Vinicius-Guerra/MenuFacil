@@ -14,9 +14,6 @@ export const InitialRegister = () => {
                     <FormRegister />
                 </div>
             </div>
-            <div>
-                <img src="" alt="" />
-            </div>
         </section>
     );
 };

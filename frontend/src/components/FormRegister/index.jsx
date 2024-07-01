@@ -3,16 +3,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { formRegisterSchema } from "./formRegisterSchema";
 import { Input } from "../Input";
 import style from "./style.module.scss";
+import { useRestaurantContext } from "../../providers/RestaurantContext";
 
 export const FormRegister = () => {
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(formRegisterSchema)
     });
 
-    // const  { restaurantRegister } = useUserContext()
-    const  { restaurantRegister } = () => {
-        alert("Cliquei")
-    };
+    const  { restaurantRegister } = useRestaurantContext()
 
     const onSubmit = (payload) => {
         restaurantRegister(payload)

@@ -1,7 +1,9 @@
 import mockup from "../../assets/mockup3.png";
 import style from "./style.module.scss";
+import { FormLogin } from "../FormLogin";
 
 export const InitialHome = () => {
+
     return (
         <section className={style.initialHome}>
             <div className={style.container}>
@@ -19,12 +21,13 @@ export const InitialHome = () => {
                 </div>
                 <div className={style.login}>
                     <h2 className={style.loginTitle}>Login</h2>
-                    <form className={style.loginForm}>
-                        <input type="text" placeholder="Usuário" className={style.input} />
+                    {/* <form onSubmit={handleSubmit(onSubmit)} className={style.loginForm}> */}
+                        {/* <input type="text" placeholder="Usuário" className={style.input} />
                         <input type="password" placeholder="Senha" className={style.input} />
                         <button type="submit" className={style.button}>Entrar</button>
-                        <button type="submit" className={style.button}>Cadastre-se</button>
-                    </form>
+                        <button type="submit" className={style.button}>Cadastre-se</button> */}
+                        <FormLogin />
+                    {/* </form> */}
                 </div>
             </div>
         </section>

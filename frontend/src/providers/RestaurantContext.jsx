@@ -32,19 +32,21 @@ export const RestaurantProvider = ({ children }) => {
     
     const restaurantLogin = async (payload) => {
         try {
-            const { data } = await menuAPI.post("/", payload);
+            console.log(payload)
+            const { data } = await menuAPI.post("/restaurants/login", payload);
             localStorage.setItem("@TOKEN", data.token);
             localStorage.setItem("@RESTAURANTID", data.user.id);
-    
+
             setToken(data.token);
             setRestaurantId(data.user.id);
             setRestaurant(data.user);
+            toast.success("Login realizado com sucesso!");
             navigate("/restaurants/profile");
         } catch (error) {
             console.log(error.response ? error.response.data : error.message);
             toast.error("Credenciais inválidas");
         }
-    }
+    };
     
 
     return (

@@ -12,7 +12,12 @@ import { categoryRouter } from "./routes/category.routes";
 export const app = express();
 
 //security
-app.use(cors())
+const corsOption = {
+    origin: "http://localhost:5173",
+    credentials: true,
+};
+
+app.use(cors(corsOption));
 app.use(helmet());
 
 app.use(json());

@@ -38,12 +38,12 @@ export class RestaurantServices {
 
         if(!comparePassword) {
             throw new AppError("Email and password doesn't match", 409);
-        };
+        }; 
         
-        const token = jwt.sign({ id: restaurant.id }, process.env.JWT_SECRET as string);
+        const accessToken = jwt.sign({ id: restaurant.id }, process.env.JWT_SECRET as string);
 
         return {
-            accessToken: token,
+            accessToken,
             restaurant: restaurantReturnSchema.parse(restaurant),
         };
     };

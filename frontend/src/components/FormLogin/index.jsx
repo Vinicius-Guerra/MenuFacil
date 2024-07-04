@@ -22,7 +22,7 @@ export const FormLogin = () => {
             <Input label="Email" type="email" placeholder="E-mail do seu estabelecimento" error={errors.email} {...register("email")} />
             <Input label="Senha" type="password" placeholder="Digite aqui sua senha" error={errors.password} {...register("password")} />
             <button type="submit" className={style.button}>Entrar</button>
-            <button type="submit" className={style.button}>Cadastre-se</button>
+            {/* <button type="submit" className={style.button}>Cadastre-se</button> */}
         </form>
     )
 }

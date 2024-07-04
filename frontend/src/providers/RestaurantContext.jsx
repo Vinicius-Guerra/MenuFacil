@@ -6,14 +6,12 @@ import { useNavigate } from "react-router-dom";
 export const RestaurantContext = createContext();
 
 export const RestaurantProvider = ({ children }) => {
-    const [ restaurant, setRestaurant ] = useState(null);
+    const [restaurant, setRestaurant] = useState(null);
 
     const tokenLocal = localStorage.getItem("@TOKEN");
-
     const [token, setToken] = useState(tokenLocal ? tokenLocal : "");
 
     const restaurantIdLocal = localStorage.getItem("@RESTAURANTID");
-
     const [restaurantId, setRestaurantId] = useState(restaurantIdLocal ? restaurantIdLocal : 0);
 
     const navigate = useNavigate();
@@ -32,28 +30,31 @@ export const RestaurantProvider = ({ children }) => {
     
     const restaurantLogin = async (payload) => {
         try {
-            console.log(payload)
-            const { data } = await menuAPI.post("/restaurants/login", payload);
-            localStorage.setItem("@TOKEN", data.token);
-            localStorage.setItem("@RESTAURANTID", data.user.id);
+            console.log("Login Payload:", payload);
+            const { data } = await menuAPI.post(`/restaurants/login`, payload, {
+                withCredentials: true, // Permitir cookies se necessário
+            });
+            console.log("Login Response:", data);
 
-            setToken(data.token);
-            setRestaurantId(data.user.id);
-            setRestaurant(data.user);
+            localStorage.setItem("@TOKEN", data.accessToken);
+            localStorage.setItem("@RESTAURANTID", data.restaurant.id);
+
+            setToken(data.accessToken);
+            setRestaurantId(data.restaurant.id);
+            setRestaurant(data.restaurant);
             toast.success("Login realizado com sucesso!");
             navigate("/restaurants/profile");
         } catch (error) {
-            console.log(error.response ? error.response.data : error.message);
+            console.error("Login Error:", error.response ? error.response.data : error.message);
             toast.error("Credenciais inválidas");
         }
     };
-    
 
     return (
-        <RestaurantContext.Provider value={{token, restaurant, restaurantId, restaurantRegister, restaurantLogin}}>
+        <RestaurantContext.Provider value={{ token, restaurant, restaurantId, restaurantRegister, restaurantLogin }}>
             {children}
         </RestaurantContext.Provider>
-    )
+    );
 }
 
 export const useRestaurantContext = () => useContext(RestaurantContext);

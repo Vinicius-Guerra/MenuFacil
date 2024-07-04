@@ -14,6 +14,14 @@ export const RestaurantProvider = ({ children }) => {
     const restaurantIdLocal = localStorage.getItem("@RESTAURANTID");
     const [restaurantId, setRestaurantId] = useState(restaurantIdLocal ? restaurantIdLocal : 0);
 
+    const [ editRestaurant, setEditRestaurant ] = useState(null);
+
+    const authHeader = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    };
+
     const navigate = useNavigate();
 
     const restaurantRegister = async (payload) => {
@@ -32,7 +40,7 @@ export const RestaurantProvider = ({ children }) => {
         try {
             console.log("Login Payload:", payload);
             const { data } = await menuAPI.post(`/restaurants/login`, payload, {
-                withCredentials: true, // Permitir cookies se necessário
+                withCredentials: true,
             });
             console.log("Login Response:", data);
 
@@ -50,11 +58,37 @@ export const RestaurantProvider = ({ children }) => {
         }
     };
 
+    const restaurantUpdate = async (payload, setLoading, reset) => {
+        try {
+            setLoading(true)
+            const newEditRestaurant = { ...editRestaurant, ...payload }
+            const { data } = await menuAPI.patch(`restaurants/profile/${newEditRestaurant.id}`, newEditRestaurant, authHeader);
+
+            reset();
+            setEditRestaurant(null);
+            setRestaurant(data)
+            toast.success("Seu perfil foi atualizado com sucesso.");
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
-        <RestaurantContext.Provider value={{ token, restaurant, restaurantId, restaurantRegister, restaurantLogin }}>
+        <RestaurantContext.Provider value={{
+            token,
+            restaurant,
+            restaurantId,
+            restaurantRegister,
+            restaurantLogin,
+            restaurantUpdate,
+            editRestaurant,
+            setEditRestaurant
+        }}>
             {children}
         </RestaurantContext.Provider>
     );
-}
+};
 
 export const useRestaurantContext = () => useContext(RestaurantContext);

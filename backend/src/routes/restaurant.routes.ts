@@ -17,6 +17,6 @@ restaurantRouter.post("/login", ValidateBody.execute(restaurantLoginBodySchema),
 
 restaurantRouter.get("/profile", VerifyToken.execute, (req, res) => restaurantControllers.getRestaurant(req,res));
 
-restaurantRouter.patch("/", VerifyToken.execute, (req, res) => restaurantControllers.update(req, res));
+restaurantRouter.patch("/profile/:id", VerifyToken.execute, (req, res) => restaurantControllers.update(req, res));
 
 restaurantRouter.get("/", (req, res) => restaurantControllers.getManyRestaurants(req, res));

@@ -14,7 +14,7 @@ export const RestaurantProvider = ({ children }) => {
     const restaurantIdLocal = localStorage.getItem("@RESTAURANTID");
     const [restaurantId, setRestaurantId] = useState(restaurantIdLocal ? restaurantIdLocal : 0);
 
-    const [ editRestaurant, setEditRestaurant ] = useState(null);
+    const [editRestaurant, setEditRestaurant] = useState(null);
 
     const authHeader = {
         headers: {
@@ -35,7 +35,7 @@ export const RestaurantProvider = ({ children }) => {
             toast.error("Ops! Algo deu errado.");
         }
     }
-    
+
     const restaurantLogin = async (payload) => {
         try {
             console.log("Login Payload:", payload);
@@ -58,20 +58,26 @@ export const RestaurantProvider = ({ children }) => {
         }
     };
 
-    const restaurantUpdate = async (payload, setLoading, reset) => {
+    const restaurantUpdate = async (formData) => {
+        // try {
+        //     const { data } = await menuAPI.patch(`/restaurants/profile/${newEdi}`, formData, authHeader);
+        //     setRestaurant(data);
+        //     toast.success("Restaurante atualizado com sucesso!");
+        // } catch (error) {
+        //     console.error("Erro ao atualizar restaurante:", error.response ? error.response.data : error.message);
+        //     toast.error("Erro ao atualizar restaurante");
+        // }
+
         try {
-            setLoading(true)
-            const newEditRestaurant = { ...editRestaurant, ...payload }
+            const newEditRestaurant = { ...editRestaurant, ...formData }
             const { data } = await menuAPI.patch(`restaurants/profile/${newEditRestaurant.id}`, newEditRestaurant, authHeader);
 
-            reset();
             setEditRestaurant(null);
             setRestaurant(data)
             toast.success("Seu perfil foi atualizado com sucesso.");
         } catch (error) {
-            console.log(error);
-        } finally {
-            setLoading(false);
+            console.error("Erro ao atualizar restaurante:", error.response ? error.response.data : error.message);
+            toast.error("Erro ao atualizar restaurante");
         }
     };
 

@@ -1,17 +1,48 @@
 import { useState } from "react";
 import { useRestaurantContext } from "../../providers/RestaurantContext";
-import { ModalEditRestaurant } from "../ModalEditRestaurant"; // Importe o modal de edição
+import { useCategoryContext } from "../../providers/CategoryContext";
+import { useRecipeContext } from "../../providers/RecipeContext";
+import { ModalDinamic } from "../ModalDinamic";
 import style from "./style.module.scss";
-import { ModalCreateCategory } from "../ModalCreateCategory";
 
 export const CardRestaurantProfile = () => {
-    const { restaurant, setEditRestaurant } = useRestaurantContext();
-    const [visibleEditModal, setVisibleEditModal] = useState(false);
-    const [visibleCreateModal, setVisibleCreateModal] = useState(false);
+    const { restaurant, restaurantUpdate } = useRestaurantContext();
+    const { addCategory } = useCategoryContext();
+    const { addRecipe } = useRecipeContext();
+    
+    const [visibleModal, setVisibleModal] = useState(false);
+    const [modalType, setModalType] = useState("");
+    const [defaultValues, setDefaultValues] = useState({});
 
     const handleEditClick = () => {
-        setEditRestaurant(restaurant);
-        setVisibleEditModal(true);
+        setModalType("editRestaurant");
+        setDefaultValues({ name: restaurant.name, description: restaurant.description });
+        setVisibleModal(true);
+    };
+
+    const handleAddCategoryClick = () => {
+        setModalType("createCategory");
+        setDefaultValues({ name: "" });
+        setVisibleModal(true);
+    };
+
+    const handleAddRecipeClick = () => {
+        setModalType("createRecipe");
+        setDefaultValues({ name: "", description: "", price: "", category: "" });
+        setVisibleModal(true);
+    };
+
+    const getSubmitFunction = () => {
+        switch (modalType) {
+            case "editRestaurant":
+                return restaurantUpdate;
+            case "createCategory":
+                return addCategory;
+            case "createRecipe":
+                return addRecipe;
+            default:
+                return null;
+        }
     };
 
     return (
@@ -25,13 +56,19 @@ export const CardRestaurantProfile = () => {
                 <nav>
                     <ul>
                         <li onClick={handleEditClick}>Editar perfil</li>
-                        <li onClick={() => setVisibleCreateModal(true)}>Adicionar categoria</li>
-                        <li>Adicionar Receita</li>
+                        <li onClick={handleAddCategoryClick}>Adicionar categoria</li>
+                        <li onClick={handleAddRecipeClick}>Adicionar Receita</li>
                     </ul>
                 </nav>
             </div>
-            {visibleEditModal && <ModalEditRestaurant setVisibleEditModal={setVisibleEditModal} />}
-            {visibleCreateModal && <ModalCreateCategory setVisibleCreateModal={setVisibleCreateModal} />}
+            {visibleModal && (
+                <ModalDinamic
+                    setVisibleModal={setVisibleModal}
+                    modalType={modalType}
+                    defaultValues={defaultValues}
+                    onSubmit={getSubmitFunction()}
+                />
+            )}
         </section>
     );
 };

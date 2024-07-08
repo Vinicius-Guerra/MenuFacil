@@ -42,4 +42,4 @@ export const CategoryProvider = ({ children }) => {
     );
 };
 
-export const useCategoryContext = () => useContext
+export const useCategoryContext = () => useContext(CategoryContext);

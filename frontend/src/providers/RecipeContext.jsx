@@ -20,7 +20,12 @@ export const RecipeProvider = ({ children }) => {
             const { data } = await menuAPI.get("/recipes", authHeader);
             setRecipes(data);
         } catch (error) {
-            toast.error("Não foi possível carregar as receitas.");
+            console.error("Error creating recipe:", error);
+            if (error.response && error.response.status === 409) {
+                toast.error("Receita já existe ou conflito de dados.");
+            } else {
+                toast.error("Erro ao criar receita. Tente novamente.");
+            }
         }
     };
 

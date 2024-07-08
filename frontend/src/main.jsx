@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { RestaurantProvider } from './providers/RestaurantContext.jsx'
 import { CategoryProvider } from './providers/CategoryContext.jsx'
 import { RecipeProvider } from './providers/RecipeContext.jsx'
+import { ToastContainer } from 'react-toastify'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -12,6 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <RestaurantProvider>
         <CategoryProvider>
           <RecipeProvider>
+            <ToastContainer />
             <App />
           </RecipeProvider>
         </CategoryProvider>

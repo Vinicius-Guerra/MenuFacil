@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+
 .modalBackground {
     position: fixed;
     top: 0;
@@ -19,8 +22,11 @@
     width: 100%;
 }
 
-h2 {
+.titleModal {
     margin-bottom: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 .formGroup {
@@ -30,15 +36,28 @@ h2 {
 .formGroup label {
     display: block;
     margin-bottom: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
 }
 
-.formGroup input,
+.formGroup input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+}
+
 .formGroup textarea {
     width: 100%;
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
 }
+
 
 .formActions {
     display: flex;

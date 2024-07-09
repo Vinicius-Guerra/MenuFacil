@@ -84,7 +84,7 @@ export const ModalDinamic = ({ setVisibleModal, modalType, defaultValues, onSubm
     return (
         <div className={style.modalBackground}>
             <div className={style.modalContainer}>
-                <h2>{getTitle()}</h2>
+                <h2 className={style.titleModal}>{getTitle()}</h2>
                 <form onSubmit={handleSubmit(submit)}>
                     {renderFormFields()}
                     <div className={style.formActions}>

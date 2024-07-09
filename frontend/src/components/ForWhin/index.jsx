@@ -5,7 +5,7 @@ import style from "./style.module.scss";
 
 export const ForWhin = () => {
     return (
-        <section className={style.forWhin}>
+        <section id="forWhin" className={style.forWhin}>
             <h2 className={style.title}>Para quem somos?</h2>
             <ul className={style.cardContainer}>
                 <li className={style.card}>

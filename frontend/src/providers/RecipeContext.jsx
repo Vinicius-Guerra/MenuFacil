@@ -20,22 +20,30 @@ export const RecipeProvider = ({ children }) => {
             const { data } = await menuAPI.get("/recipes", authHeader);
             setRecipes(data);
         } catch (error) {
-            console.error("Error creating recipe:", error);
-            if (error.response && error.response.status === 409) {
-                toast.error("Receita já existe ou conflito de dados.");
-            } else {
-                toast.error("Erro ao criar receita. Tente novamente.");
-            }
+            toast.error("Erro ao carregar receitas.");
         }
     };
 
     const addRecipe = async (recipe) => {
+        // Converter price para número
+        const formattedRecipe = {
+            ...recipe,
+            price: Number(recipe.price)
+        };
+    
+        console.log("Enviando receita para criação:", formattedRecipe);
+    
         try {
-            const { data } = await menuAPI.post("/recipes", recipe, authHeader);
+            const { data } = await menuAPI.post("/recipes", formattedRecipe, authHeader);
             setRecipes([...recipes, data]);
             toast.success("Receita adicionada com sucesso!");
         } catch (error) {
-            toast.error("Não foi possível adicionar a receita.");
+            console.error("Erro ao adicionar receita:", error);
+            if (error.response && error.response.status === 409) {
+                toast.error("Receita já existe ou conflito de dados.");
+            } else {
+                toast.error("Não foi possível adicionar a receita.");
+            }
         }
     };
 

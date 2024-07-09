@@ -59,15 +59,6 @@ export const RestaurantProvider = ({ children }) => {
     };
 
     const restaurantUpdate = async (formData) => {
-        // try {
-        //     const { data } = await menuAPI.patch(`/restaurants/profile/${newEdi}`, formData, authHeader);
-        //     setRestaurant(data);
-        //     toast.success("Restaurante atualizado com sucesso!");
-        // } catch (error) {
-        //     console.error("Erro ao atualizar restaurante:", error.response ? error.response.data : error.message);
-        //     toast.error("Erro ao atualizar restaurante");
-        // }
-
         try {
             const newEditRestaurant = { ...editRestaurant, ...formData }
             const { data } = await menuAPI.patch(`restaurants/profile/${newEditRestaurant.id}`, newEditRestaurant, authHeader);

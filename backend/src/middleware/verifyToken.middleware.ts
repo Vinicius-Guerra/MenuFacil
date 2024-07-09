@@ -14,13 +14,14 @@ export class VerifyToken {
 
         try {
             const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
-    
             res.locals.decode = decoded;
-    
+
+            console.log("Token verificado, payload decodificado:", decoded);
+
             next();
         } catch(error) {
+            console.error("Erro ao verificar token:", error);
             throw new AppError("Invalid token", 401);
         };
-
     };
 };

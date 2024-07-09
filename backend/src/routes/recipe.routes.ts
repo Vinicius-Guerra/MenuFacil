@@ -14,7 +14,10 @@ export const recipeRouter = Router();
 container.registerSingleton("RecipeServices", RecipeServices);
 const recipeControllers = container.resolve(RecipeControllers);
 
-recipeRouter.post("/", ValidateBody.execute(recipeCreateBodySchema), VerifyToken.execute, (req, res) => recipeControllers.create(req,res));
+recipeRouter.post("/", ValidateBody.execute(recipeCreateBodySchema), VerifyToken.execute, (req, res) => {
+    console.log("Iniciando criação de receita...");
+    recipeControllers.create(req, res);
+});
 
 recipeRouter.get("/:id", IsRecipeIdValid.execute,(req, res) => recipeControllers.getOne(req, res));
 

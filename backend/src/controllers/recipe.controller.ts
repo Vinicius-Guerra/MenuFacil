@@ -9,11 +9,19 @@ export class RecipeControllers {
 
     async create(req: Request, res: Response): Promise<Response<TRecipe>> {
         const { id } = res.locals.decode;
-        const response = await this.recipeServices.create(req.body, id);
+        console.log("Iniciando criação de receita com ID de restaurante:", id);
 
-        return res.status(201).json(response);
+        try {
+            const response = await this.recipeServices.create(req.body, id);
+            return res.status(201).json(response);
+        } catch (error: any) {
+            console.error("Erro ao criar receita:", error.message);
+            if (error.message === "Receita já existe.") {
+                return res.status(409).json({ message: error.message });
+            }
+            return res.status(500).json({ message: "Erro ao criar receita." });
+        }
     };
-
     async getOne(req: Request, res: Response): Promise<Response<TRecipe>> {
         const id = req.params.id;
         const response = await this.recipeServices.getOne(id);

@@ -15,6 +15,17 @@ export const RecipeProvider = ({ children }) => {
         }
     };
 
+    const fetchRecipesByRestaurant = async (restaurantId) => {
+        try {
+            const response = await menuAPI.get(`/recipes/restaurante/${restaurantId}`);
+            setRecipes(response.data);
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching recipes", error);
+            return [];
+        }
+    };
+
     const fetchRecipes = async () => {
         try {
             const { data } = await menuAPI.get("/recipes", authHeader);
@@ -30,9 +41,9 @@ export const RecipeProvider = ({ children }) => {
             ...recipe,
             price: Number(recipe.price)
         };
-    
+
         console.log("Enviando receita para criação:", formattedRecipe);
-    
+
         try {
             const { data } = await menuAPI.post("/recipes", formattedRecipe, authHeader);
             setRecipes([...recipes, data]);
@@ -48,7 +59,7 @@ export const RecipeProvider = ({ children }) => {
     };
 
     return (
-        <RecipeContext.Provider value={{ recipes, fetchRecipes, addRecipe }}>
+        <RecipeContext.Provider value={{ recipes, fetchRecipesByRestaurant, fetchRecipes, addRecipe }}>
             {children}
         </RecipeContext.Provider>
     );

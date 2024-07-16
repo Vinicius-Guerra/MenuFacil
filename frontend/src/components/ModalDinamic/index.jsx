@@ -1,9 +1,19 @@
-import { useState } from "react";
+// src/components/ModalDinamic.jsx
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import PropTypes from "prop-types";
 import style from "./style.module.scss";
+import { useCategoryContext } from "../../providers/CategoryContext";
 
 export const ModalDinamic = ({ setVisibleModal, modalType, defaultValues, onSubmit }) => {
     const [loading, setLoading] = useState(false);
+    const { categories, fetchCategoriesByRestaurant } = useCategoryContext();
+
+    useEffect(() => {
+        if (modalType === "createRecipe") {
+            fetchCategoriesByRestaurant();
+        }
+    }, [modalType, fetchCategoriesByRestaurant]);
 
     const { handleSubmit, register, reset } = useForm({
         defaultValues: defaultValues
@@ -59,7 +69,13 @@ export const ModalDinamic = ({ setVisibleModal, modalType, defaultValues, onSubm
                         </div>
                         <div className={style.formGroup}>
                             <label htmlFor="category">Categoria</label>
-                            <input id="category" {...register("category")} />
+                            <select id="category" {...register("category")}>
+                                {categories.map(category => (
+                                    <option key={category.id} value={category.id}>
+                                        {category.name}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                     </>
                 );
@@ -99,4 +115,11 @@ export const ModalDinamic = ({ setVisibleModal, modalType, defaultValues, onSubm
             </div>
         </div>
     );
+};
+
+ModalDinamic.propTypes = {
+    setVisibleModal: PropTypes.func.isRequired,
+    modalType: PropTypes.string.isRequired,
+    defaultValues: PropTypes.object.isRequired,
+    onSubmit: PropTypes.func.isRequired
 };

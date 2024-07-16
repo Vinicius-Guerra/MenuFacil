@@ -1,18 +1,26 @@
-import { useState } from "react";
-import { useRestaurantContext } from "../../providers/RestaurantContext";
+import { useEffect, useState } from "react";
 import { useCategoryContext } from "../../providers/CategoryContext";
 import { useRecipeContext } from "../../providers/RecipeContext";
-import { ModalDinamic } from "../ModalDinamic";
+import { useRestaurantContext } from "../../providers/RestaurantContext";
 import style from "./style.module.scss";
+import { ModalDinamic } from "../ModalDinamic";
+import CardRecipe from "../CardRecipe";
 
 export const CardRestaurantProfile = () => {
     const { restaurant, restaurantUpdate } = useRestaurantContext();
-    const { addCategory } = useCategoryContext();
-    const { addRecipe } = useRecipeContext();
-    
+    const { addCategory, fetchCategoriesByRestaurant, categories } = useCategoryContext();
+    const { recipes, fetchRecipesByRestaurant, addRecipe } = useRecipeContext();
+
     const [visibleModal, setVisibleModal] = useState(false);
     const [modalType, setModalType] = useState("");
     const [defaultValues, setDefaultValues] = useState({});
+
+    useEffect(() => {
+        if (restaurant?.id) {
+            fetchRecipesByRestaurant(restaurant.id);
+            fetchCategoriesByRestaurant(restaurant.id);
+        }
+    }, [restaurant]);
 
     const handleEditClick = () => {
         setModalType("editRestaurant");
@@ -58,8 +66,20 @@ export const CardRestaurantProfile = () => {
                         <li onClick={handleEditClick}>Editar perfil</li>
                         <li onClick={handleAddCategoryClick}>Adicionar categoria</li>
                         <li onClick={handleAddRecipeClick}>Adicionar Receita</li>
+                        <li>Ver minhas categorias</li>
                     </ul>
                 </nav>
+                <section className={style.profileSection}>
+                    <h1>Menu Online - {restaurant?.name}</h1>
+                    <div className={style.recipeList}>
+                        {recipes.map((recipe) => (
+                            <CardRecipe
+                                key={recipe.id}
+                                recipe={recipe}
+                            />
+                        ))}
+                    </div>
+                </section>
             </div>
             {visibleModal && (
                 <ModalDinamic
@@ -67,6 +87,7 @@ export const CardRestaurantProfile = () => {
                     modalType={modalType}
                     defaultValues={defaultValues}
                     onSubmit={getSubmitFunction()}
+                    categories={categories}
                 />
             )}
         </section>

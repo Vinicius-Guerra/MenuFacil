@@ -15,6 +15,18 @@ export const CategoryProvider = ({ children }) => {
         }
     };
 
+    const fetchCategoriesByRestaurant = async (restaurantId) => {
+        try {
+            const response = await menuAPI.get(`/categories/${restaurantId}`, authHeader);
+            setCategories(response.data);
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching categories", error);
+            toast.error("Erro ao carregar categorias.");
+            return [];
+        }
+    };
+
     const fetchCategories = async () => {
         try {
             const { data } = await menuAPI.get("/categories", authHeader);
@@ -36,7 +48,7 @@ export const CategoryProvider = ({ children }) => {
     };
 
     return (
-        <CategoryContext.Provider value={{ categories, fetchCategories, addCategory }}>
+        <CategoryContext.Provider value={{ categories, fetchCategoriesByRestaurant, fetchCategories, addCategory }}>
             {children}
         </CategoryContext.Provider>
     );

@@ -68,3 +68,20 @@ nav ul li {
 nav ul li:hover {
     color: #ff5a3c;
 }
+
+.profileSection {
+    padding: 1.25rem;
+
+    h1 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #666;
+    }
+    .recipeList {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.25rem;
+    }
+}

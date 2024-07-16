@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+    &:hover {
+        transform: translateY(-5px);
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    
+    .title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    .actions {
+        button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            padding: 5px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+            &:hover {
+                background: rgba(0, 0, 0, 0.1);
+            }
+        }
+        .editBtn {
+            color: #4CAF50;
+            margin-right: 10px;
+        }
+        .deleteBtn {
+            color: #F44336;
+        }
+    }
+}
+
+
+
+.description {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: .625rem;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    color: #777;
+    gap: 0.5rem;
+    .category, .price {
+        margin-right: 1.25rem;
+    }
+}

@@ -23,7 +23,7 @@ export class RecipeServices {
 
         const newRecipeData: any = { ...validatedBody, restauranteId }
         
-        const recipe = await prisma.recipe.create({ data: newRecipeData })
+        const recipe = await prisma.recipe.create({ data: newRecipeData, include: { category: true } })
 
         console.log("Receita criada com sucesso:", recipe);
 

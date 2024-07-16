@@ -21,7 +21,7 @@ export class RecipeServices {
             throw new Error("Receita já existe.");
         }
 
-        const newRecipeData: any = { ...validatedBody, restauranteId }
+        const newRecipeData: any = { ...validatedBody, restauranteId, categoryId: validatedBody.categoryId }
         
         const recipe = await prisma.recipe.create({ data: newRecipeData, include: { category: true } })
 
@@ -32,19 +32,19 @@ export class RecipeServices {
 
 
     async getOne(recipeId: string){
-        const recipe = await prisma.recipe.findFirst({ where: { id: recipeId }});
+        const recipe = await prisma.recipe.findFirst({ where: { id: recipeId }, include: { category: true }});
 
         return recipe;
     }
 
     async getMany(restauranteId: string, categoryId?: string): Promise<TRecipe[]> {
-        const recipes = await prisma.recipe.findMany({ where: { restauranteId, categoryId }});
+        const recipes = await prisma.recipe.findMany({ where: { restauranteId, categoryId }, include: { category: true }});
 
         return recipes;
     };
 
     async update(body: TRecipeUpdateBody, recipeId: string): Promise<TRecipe> {
-        const recipe = await prisma.recipe.update({ where: { id: recipeId }, data: body });
+        const recipe = await prisma.recipe.update({ where: { id: recipeId }, data: body, include: { category: true } });
 
         return recipe;
     };

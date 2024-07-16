@@ -22,14 +22,13 @@ const CardRecipe = ({ recipe, onEdit, onDelete }) => {
 
 CardRecipe.propTypes = {
     recipe: PropTypes.shape({
-        id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
-        category: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
-    }).isRequired,
-    onEdit: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
+        category: PropTypes.shape({
+            name: PropTypes.string
+        }).isRequired 
+    }).isRequired
 };
 
 export default CardRecipe;

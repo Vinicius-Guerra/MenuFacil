@@ -1,19 +1,20 @@
-// src/components/ModalDinamic.jsx
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
 import style from "./style.module.scss";
 import { useCategoryContext } from "../../providers/CategoryContext";
+import { useRestaurantContext } from "../../providers/RestaurantContext";
 
 export const ModalDinamic = ({ setVisibleModal, modalType, defaultValues, onSubmit }) => {
     const [loading, setLoading] = useState(false);
     const { categories, fetchCategoriesByRestaurant } = useCategoryContext();
+    const { restaurant } = useRestaurantContext();
 
     useEffect(() => {
-        if (modalType === "createRecipe") {
-            fetchCategoriesByRestaurant();
+        if (modalType === "createRecipe" && restaurant?.id) {
+            fetchCategoriesByRestaurant(restaurant.id);
         }
-    }, [modalType, fetchCategoriesByRestaurant]);
+    }, [modalType, restaurant, fetchCategoriesByRestaurant]);
 
     const { handleSubmit, register, reset } = useForm({
         defaultValues: defaultValues
@@ -68,8 +69,8 @@ export const ModalDinamic = ({ setVisibleModal, modalType, defaultValues, onSubm
                             <input id="price" type="number" {...register("price")} />
                         </div>
                         <div className={style.formGroup}>
-                            <label htmlFor="category">Categoria</label>
-                            <select id="category" {...register("category")}>
+                            <label htmlFor="categoryId">Categoria</label>
+                            <select id="categoryId" {...register("categoryId")}>
                                 {categories.map(category => (
                                     <option key={category.id} value={category.id}>
                                         {category.name}

@@ -7,6 +7,7 @@ export const CategoryContext = createContext();
 
 export const CategoryProvider = ({ children }) => {
     const [categories, setCategories] = useState([]);
+    const [error, setError] = useState(null);
     const { token } = useRestaurantContext();
 
     const authHeader = {
@@ -19,11 +20,10 @@ export const CategoryProvider = ({ children }) => {
         try {
             const response = await menuAPI.get(`/categories/${restaurantId}`, authHeader);
             setCategories(response.data);
-            return response.data;
         } catch (error) {
             console.error("Error fetching categories", error);
             toast.error("Erro ao carregar categorias.");
-            return [];
+            setError(error);
         }
     };
 

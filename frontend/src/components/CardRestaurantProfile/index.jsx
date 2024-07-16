@@ -9,7 +9,7 @@ import CardRecipe from "../CardRecipe";
 export const CardRestaurantProfile = () => {
     const { restaurant, restaurantUpdate } = useRestaurantContext();
     const { addCategory, fetchCategoriesByRestaurant, categories } = useCategoryContext();
-    const { recipes, fetchRecipesByRestaurant, addRecipe } = useRecipeContext();
+    const { recipes, fetchRecipesByRestaurant, addRecipe, editRecipe, deleteRecipe } = useRecipeContext();
 
     const [visibleModal, setVisibleModal] = useState(false);
     const [modalType, setModalType] = useState("");
@@ -40,6 +40,10 @@ export const CardRestaurantProfile = () => {
         setVisibleModal(true);
     };
 
+    const handleDeleteClick = async (recipeId) => {
+        await deleteRecipe(recipeId);
+    };
+
     const getSubmitFunction = () => {
         switch (modalType) {
             case "editRestaurant":
@@ -48,6 +52,8 @@ export const CardRestaurantProfile = () => {
                 return addCategory;
             case "createRecipe":
                 return addRecipe;
+            case "editRecipe":
+                return (updatedRecipe) => editRecipe(defaultValues.id, updatedRecipe);
             default:
                 return null;
         }
@@ -76,6 +82,8 @@ export const CardRestaurantProfile = () => {
                             <CardRecipe
                                 key={recipe.id}
                                 recipe={recipe}
+                                onEdit={handleEditClick}
+                                onDelete={handleDeleteClick}
                             />
                         ))}
                     </div>

@@ -58,8 +58,35 @@ export const RecipeProvider = ({ children }) => {
         }
     };
 
+    const editRecipe = async (recipeId, updatedRecipe) => {
+        const formattedRecipe = {
+            ...updatedRecipe,
+            price: Number(updatedRecipe.price)
+        };
+
+        try {
+            const { data } = await menuAPI.put(`/recipes/${recipeId}`, formattedRecipe, authHeader);
+            setRecipes(recipes.map(recipe => recipe.id === recipeId ? data : recipe));
+            toast.success("Receita editada com sucesso!");
+        } catch (error) {
+            console.error("Erro ao editar receita:", error);
+            toast.error("Não foi possível editar a receita.");
+        }
+    };
+
+    const deleteRecipe = async (recipeId) => {
+        try {
+            await menuAPI.delete(`/recipes/${recipeId}`, authHeader);
+            setRecipes(recipes.filter(recipe => recipe.id !== recipeId));
+            toast.success("Receita deletada com sucesso!");
+        } catch (error) {
+            console.error("Erro ao deletar receita:", error);
+            toast.error("Não foi possível deletar a receita.");
+        }
+    };
+
     return (
-        <RecipeContext.Provider value={{ recipes, fetchRecipesByRestaurant, fetchRecipes, addRecipe }}>
+        <RecipeContext.Provider value={{ recipes, fetchRecipesByRestaurant, fetchRecipes, addRecipe, editRecipe, deleteRecipe }}>
             {children}
         </RecipeContext.Provider>
     );

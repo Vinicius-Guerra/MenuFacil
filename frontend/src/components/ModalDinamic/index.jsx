@@ -11,7 +11,7 @@ export const ModalDinamic = ({ setVisibleModal, modalType, defaultValues, onSubm
     const { restaurant } = useRestaurantContext();
 
     useEffect(() => {
-        if (modalType === "createRecipe" && restaurant?.id) {
+        if ((modalType === "createRecipe" || modalType === "editRecipe") && restaurant?.id) {
             fetchCategoriesByRestaurant(restaurant.id);
         }
     }, [modalType, restaurant, fetchCategoriesByRestaurant]);
@@ -54,6 +54,7 @@ export const ModalDinamic = ({ setVisibleModal, modalType, defaultValues, onSubm
                     </div>
                 );
             case "createRecipe":
+            case "editRecipe":
                 return (
                     <>
                         <div className={style.formGroup}>
@@ -93,6 +94,8 @@ export const ModalDinamic = ({ setVisibleModal, modalType, defaultValues, onSubm
                 return "Criar Categoria";
             case "createRecipe":
                 return "Criar Receita";
+            case "editRecipe":
+                return "Editar Receita";
             default:
                 return "";
         }

@@ -58,14 +58,14 @@ export const RecipeProvider = ({ children }) => {
         }
     };
 
-    const editRecipe = async (recipeId, updatedRecipe) => {
+    const editRecipe = async (restaurantId, recipeId, updatedRecipe) => {
         const formattedRecipe = {
             ...updatedRecipe,
             price: Number(updatedRecipe.price)
         };
 
         try {
-            const { data } = await menuAPI.put(`/recipes/${recipeId}`, formattedRecipe, authHeader);
+            const { data } = await menuAPI.patch(`/recipes/restaurante/${restaurantId}/${recipeId}`, formattedRecipe, authHeader);
             setRecipes(recipes.map(recipe => recipe.id === recipeId ? data : recipe));
             toast.success("Receita editada com sucesso!");
         } catch (error) {
@@ -74,9 +74,9 @@ export const RecipeProvider = ({ children }) => {
         }
     };
 
-    const deleteRecipe = async (recipeId) => {
+    const deleteRecipe = async (restaurantId, recipeId) => {
         try {
-            await menuAPI.delete(`/recipes/${recipeId}`, authHeader);
+            await menuAPI.delete(`/recipes/restaurante/${restaurantId}/${recipeId}`, authHeader);
             setRecipes(recipes.filter(recipe => recipe.id !== recipeId));
             toast.success("Receita deletada com sucesso!");
         } catch (error) {

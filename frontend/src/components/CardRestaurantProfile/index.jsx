@@ -28,6 +28,12 @@ export const CardRestaurantProfile = () => {
         setVisibleModal(true);
     };
 
+    const handleEditClickRecipe = (recipe) => {
+        setModalType("editRecipe");
+        setDefaultValues(recipe);
+        setVisibleModal(true);
+    };
+
     const handleAddCategoryClick = () => {
         setModalType("createCategory");
         setDefaultValues({ name: "" });
@@ -41,7 +47,7 @@ export const CardRestaurantProfile = () => {
     };
 
     const handleDeleteClick = async (recipeId) => {
-        await deleteRecipe(recipeId);
+        await deleteRecipe(restaurant.id, recipeId);
     };
 
     const getSubmitFunction = () => {
@@ -53,7 +59,7 @@ export const CardRestaurantProfile = () => {
             case "createRecipe":
                 return addRecipe;
             case "editRecipe":
-                return (updatedRecipe) => editRecipe(defaultValues.id, updatedRecipe);
+                return (updatedRecipe) => editRecipe(restaurant.id, defaultValues.id, updatedRecipe);
             default:
                 return null;
         }
@@ -82,7 +88,7 @@ export const CardRestaurantProfile = () => {
                             <CardRecipe
                                 key={recipe.id}
                                 recipe={recipe}
-                                onEdit={handleEditClick}
+                                onEdit={handleEditClickRecipe}
                                 onDelete={handleDeleteClick}
                             />
                         ))}

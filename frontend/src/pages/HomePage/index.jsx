@@ -1,3 +1,4 @@
+import { useRef } from "react"
 import { AllowCustomersHome } from "../../components/AllowCustomersHome"
 import { Footer } from "../../components/Footer"
 import { ForWhin } from "../../components/ForWhin"
@@ -12,10 +13,14 @@ export const HomePage = () => {
         <body>
             <Header />
             <main>
-                <InitialHome />
+                <div id="initialHome">
+                    <InitialHome />
+                </div>
                 <AllowCustomersHome />
                 <UseMenu />
-                <ForWhin />
+                <div id="forWhin">
+                    <ForWhin />
+                </div>
                 <QuestionsHome />
                 <RegisterNowHome />
             </main>

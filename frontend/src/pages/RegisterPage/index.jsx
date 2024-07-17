@@ -1,3 +1,4 @@
+import { Footer } from "../../components/Footer"
 import { Header } from "../../components/Header"
 import { InitialRegister } from "../../components/InitialRegister"
 
@@ -8,6 +9,7 @@ export const RegisterPage = () => {
             <main>
                 <InitialRegister />
             </main>
+            <Footer />
         </body>
     )
 }

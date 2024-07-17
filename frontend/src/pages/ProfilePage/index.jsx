@@ -1,4 +1,5 @@
 import { CardRestaurantProfile } from "../../components/CardRestaurantProfile"
+import { FooterProfile } from "../../components/FooterProfile"
 import { HeaderProfile } from "../../components/HeaderProfile"
 
 export const ProfilePage = () => {
@@ -8,6 +9,7 @@ export const ProfilePage = () => {
             <main>
                 <CardRestaurantProfile />
             </main>
+            <FooterProfile />
         </body>
     )
 }

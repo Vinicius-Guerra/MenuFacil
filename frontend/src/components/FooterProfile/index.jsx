@@ -1,14 +1,7 @@
 import { Link } from "react-router-dom";
 import style from "./style.module.scss";
 
-export const Footer = () => {
-    const scrollToSection = (sectionId) => {
-        const section = document.getElementById(sectionId);
-        if(section) {
-            section.scrollIntoView({ behavior: "smooth" });
-        }
-    };
-
+export const FooterProfile = () => {
     return (
         <footer className={style.footer}>
             <nav>
@@ -24,13 +17,8 @@ export const Footer = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/restaurants" className={style.navLink}>
-                            Registre-se
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/restaurants/login" onClick={() => scrollToSection("initialHome")} className={style.navLink}>
-                            Login
+                        <Link to={"/#"} className={style.navLink}>
+                            Indique o Menu fácil
                         </Link>
                     </li>
                 </ul>

@@ -83,16 +83,22 @@ export const CardRestaurantProfile = () => {
                 </nav>
                 <section className={style.profileSection}>
                     <h1>Menu Online - {restaurant?.name}</h1>
-                    <div className={style.recipeList}>
-                        {recipes.map((recipe) => (
-                            <CardRecipe
-                                key={recipe.id}
-                                recipe={recipe}
-                                onEdit={handleEditClickRecipe}
-                                onDelete={handleDeleteClick}
-                            />
-                        ))}
-                    </div>
+                    {recipes.length === 0 ? (
+                        <div className={style.noRecipesCard}>
+                            <h2>Seu restaurante ainda não possui receitas cadastradas.</h2>
+                        </div>
+                    ) : (
+                        <div className={style.recipeList}>
+                            {recipes.map((recipe) => (
+                                <CardRecipe
+                                    key={recipe.id}
+                                    recipe={recipe}
+                                    onEdit={handleEditClickRecipe}
+                                    onDelete={handleDeleteClick}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </section>
             </div>
             {visibleModal && (

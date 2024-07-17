@@ -9,6 +9,13 @@ export const Header = () => {
         setMenuOpen(!menuOpen);
     };
 
+    const scrollToSection = (sectionId) => {
+        const section = document.getElementById(sectionId);
+        if(section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <header className={style.container}>
             <div className={style.container_logo}>
@@ -23,7 +30,7 @@ export const Header = () => {
             <nav className={menuOpen ? style.open : ""}>
                 <ul>
                     <li>
-                        <Link className={style.link} to="/restaurants/login">
+                        <Link className={style.link} to="/restaurants/login" onClick={() => scrollToSection("initialHome")}>
                             <p>Log in</p>
                         </Link>
                     </li>
@@ -33,7 +40,7 @@ export const Header = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link className={style.link} to="/#">
+                        <Link className={style.link} to="/restaurants/login"  onClick={() => scrollToSection("forWhin")}>
                             <p>Pra quem é?</p>
                         </Link>
                     </li>

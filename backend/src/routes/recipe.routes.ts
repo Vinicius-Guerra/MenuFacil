@@ -23,6 +23,6 @@ recipeRouter.get("/:id", IsRecipeIdValid.execute,(req, res) => recipeControllers
 
 recipeRouter.get("/restaurante/:restauranteId", IsRestaurantIdValid.execute, (req, res) => recipeControllers.getMany(req, res));
 
-recipeRouter.patch("/:id", ValidateBody.execute(recipeUpdateBodySchema), VerifyToken.execute, IsRecipeIdValid.execute, IsRestaurantRecipeOwner.execute, (req, res) => recipeControllers.update(req, res));
+recipeRouter.patch("/restaurante/:restauranteId/:id", ValidateBody.execute(recipeUpdateBodySchema), VerifyToken.execute, IsRecipeIdValid.execute, IsRestaurantRecipeOwner.execute, (req, res) => recipeControllers.update(req, res));
 
-recipeRouter.delete("/:id", VerifyToken.execute, IsRecipeIdValid.execute, IsRestaurantRecipeOwner.execute,(req, res) => recipeControllers.delete(req, res));
+recipeRouter.delete("/restaurante/:restauranteId/:id", VerifyToken.execute, IsRecipeIdValid.execute, IsRestaurantRecipeOwner.execute,(req, res) => recipeControllers.delete(req, res));

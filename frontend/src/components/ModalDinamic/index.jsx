@@ -7,11 +7,11 @@ import { useRestaurantContext } from "../../providers/RestaurantContext";
 
 export const ModalDinamic = ({ setVisibleModal, modalType, defaultValues, onSubmit }) => {
     const [loading, setLoading] = useState(false);
-    const { categories, fetchCategoriesByRestaurant } = useCategoryContext();
+    const { categories, fetchCategoriesByRestaurant, deleteCategory } = useCategoryContext();
     const { restaurant } = useRestaurantContext();
 
     useEffect(() => {
-        if ((modalType === "createRecipe" || modalType === "editRecipe") && restaurant?.id) {
+        if ((modalType === "createRecipe" || modalType === "editRecipe" || modalType === "viewCategories") && restaurant?.id) {
             fetchCategoriesByRestaurant(restaurant.id);
         }
     }, [modalType, restaurant, fetchCategoriesByRestaurant]);
@@ -29,6 +29,11 @@ export const ModalDinamic = ({ setVisibleModal, modalType, defaultValues, onSubm
             reset(defaultValues);
             setVisibleModal(false);
         }
+    };
+
+    const handleDeleteCategory = async (categoryId) => {
+        await deleteCategory(categoryId);
+        fetchCategoriesByRestaurant(restaurant.id);
     };
 
     const renderFormFields = () => {
@@ -81,6 +86,19 @@ export const ModalDinamic = ({ setVisibleModal, modalType, defaultValues, onSubm
                         </div>
                     </>
                 );
+            case "viewCategories":
+                return (
+                    <div className={style.categoryList}>
+                        <ul>
+                            {categories.map(category => (
+                                <li key={category.id} className={style.categoryItem}>
+                                    <span>{category.name}</span>
+                                    <button onClick={() => handleDeleteCategory(category.id)} className={style.deleteButton}>Excluir</button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                );
             default:
                 return null;
         }
@@ -96,6 +114,8 @@ export const ModalDinamic = ({ setVisibleModal, modalType, defaultValues, onSubm
                 return "Criar Receita";
             case "editRecipe":
                 return "Editar Receita";
+            case "viewCategories":
+                return "Categorias";
             default:
                 return "";
         }
@@ -105,17 +125,28 @@ export const ModalDinamic = ({ setVisibleModal, modalType, defaultValues, onSubm
         <div className={style.modalBackground}>
             <div className={style.modalContainer}>
                 <h2 className={style.titleModal}>{getTitle()}</h2>
-                <form onSubmit={handleSubmit(submit)}>
-                    {renderFormFields()}
-                    <div className={style.formActions}>
-                        <button type="submit" disabled={loading}>
-                            {loading ? "Salvando..." : "Salvar"}
-                        </button>
-                        <button type="button" onClick={() => setVisibleModal(false)}>
-                            Cancelar
-                        </button>
+                {modalType === "viewCategories" ? (
+                    <div className={style.modalContent}>
+                        {renderFormFields()}
+                        <div className={style.formActions}>
+                            <button type="button" onClick={() => setVisibleModal(false)}>
+                                Fechar
+                            </button>
+                        </div>
                     </div>
-                </form>
+                ) : (
+                    <form onSubmit={handleSubmit(submit)}>
+                        {renderFormFields()}
+                        <div className={style.formActions}>
+                            <button type="submit" disabled={loading}>
+                                {loading ? "Salvando..." : "Salvar"}
+                            </button>
+                            <button type="button" onClick={() => setVisibleModal(false)}>
+                                Cancelar
+                            </button>
+                        </div>
+                    </form>
+                )}
             </div>
         </div>
     );

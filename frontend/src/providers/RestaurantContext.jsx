@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { menuAPI } from "../services/api";
 import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ export const RestaurantContext = createContext();
 
 export const RestaurantProvider = ({ children }) => {
     const [restaurant, setRestaurant] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const tokenLocal = localStorage.getItem("@TOKEN");
     const [token, setToken] = useState(tokenLocal ? tokenLocal : "");
@@ -71,6 +72,36 @@ export const RestaurantProvider = ({ children }) => {
             toast.error("Erro ao atualizar restaurante");
         }
     };
+
+    const autoLogin = async () => {
+        if (token && restaurantId) {
+            try {
+                const { data } = await menuAPI.get(`/restaurants/profile`, authHeader);
+                setRestaurant(data);
+                navigate("/restaurants/profile");
+            } catch (error) {
+                console.error("AutoLogin Error:", error.response ? error.response.data : error.message);
+                localStorage.removeItem("@TOKEN");
+                localStorage.removeItem("@RESTAURANTID");
+                setToken("");
+                setRestaurantId(0);
+                navigate("/restaurants/login");
+            } finally {
+                setLoading(false);
+            }
+        } else {
+            setLoading(false);
+        }
+    };
+
+
+    useEffect(() => {
+        autoLogin();
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <RestaurantContext.Provider value={{

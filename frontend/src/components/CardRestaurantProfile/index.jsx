@@ -46,6 +46,11 @@ export const CardRestaurantProfile = () => {
         setVisibleModal(true);
     };
 
+    const handleViewCategoriesClick = () => {
+        setModalType("viewCategories");
+        setVisibleModal(true);
+    };
+
     const handleDeleteClick = async (recipeId) => {
         await deleteRecipe(restaurant.id, recipeId);
     };
@@ -78,7 +83,7 @@ export const CardRestaurantProfile = () => {
                         <li onClick={handleEditClick}>Editar perfil</li>
                         <li onClick={handleAddCategoryClick}>Adicionar categoria</li>
                         <li onClick={handleAddRecipeClick}>Adicionar Receita</li>
-                        <li>Ver minhas categorias</li>
+                        <li onClick={handleViewCategoriesClick}>Ver minhas categorias</li>
                     </ul>
                 </nav>
                 <section className={style.profileSection}>

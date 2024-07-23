@@ -21,13 +21,7 @@ export const InitialHome = () => {
                 </div>
                 <div className={style.login}>
                     <h2 className={style.loginTitle}>Login</h2>
-                    {/* <form onSubmit={handleSubmit(onSubmit)} className={style.loginForm}> */}
-                        {/* <input type="text" placeholder="Usuário" className={style.input} />
-                        <input type="password" placeholder="Senha" className={style.input} />
-                        <button type="submit" className={style.button}>Entrar</button>
-                        <button type="submit" className={style.button}>Cadastre-se</button> */}
-                        <FormLogin />
-                    {/* </form> */}
+                    <FormLogin />
                 </div>
             </div>
         </section>

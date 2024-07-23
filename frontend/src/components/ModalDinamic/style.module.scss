@@ -16,9 +16,9 @@
 .modalContainer {
     background: #fff;
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: .5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
+    max-width: 31.25rem;
     width: 100%;
 }
 
@@ -27,6 +27,53 @@
     font-family: 'Poppins', sans-serif;
     font-size: 1.5rem;
     font-weight: bold;
+}
+
+.closeButton {
+    position: absolute;
+    top: .625rem;
+    right: .625rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.categoryList {
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+}
+
+.categoryItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    span {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.3rem;
+    }
+
+    .deleteButton {
+        background: #e74c3c;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 20%;
+        &:hover {
+            background: #c0392b;
+        }
+    }
 }
 
 .formGroup {
@@ -86,4 +133,13 @@ button[type="button"] {
     font-family: 'Poppins', sans-serif;
     font-size: 2rem;
     font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: .625rem;
+    border-radius: .250rem;
+    border: .0625rem solid #cecece;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
 }

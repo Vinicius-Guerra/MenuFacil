@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./style.module.scss";
-import { useRestaurantContext } from "../../providers/RestaurantContext";
 
-export const HeaderProfile = () => {
+export const HeaderMenus = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const { restaurantLogout } = useRestaurantContext();
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -26,22 +24,17 @@ export const HeaderProfile = () => {
                 <ul>
                     <li>
                         <Link className={style.link} to="/restaurants/login">
-                            <p>Meu Menu</p>
+                            <p>Home Page</p>
                         </Link>
                     </li>
                     <li>
                         <Link className={style.link} to="/restaurants">
-                            <p>Cadastrar receita</p>
+                            <p>Cadastrar meu restaurante</p>
                         </Link>
                     </li>
                     <li>
-                        <Link className={style.link} to="/#">
-                            <p>Cadastrar categoria</p>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link className={style.link} onClick={restaurantLogout}>
-                            <p>Sair</p>
+                        <Link className={style.link} to="/restaurants/login">
+                            <p>Voltar</p>
                         </Link>
                     </li>
                 </ul>

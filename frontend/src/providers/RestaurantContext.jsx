@@ -7,6 +7,7 @@ export const RestaurantContext = createContext();
 
 export const RestaurantProvider = ({ children }) => {
     const [restaurant, setRestaurant] = useState(null);
+    const [restaurants, setRestaurants] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const tokenLocal = localStorage.getItem("@TOKEN");
@@ -73,6 +74,20 @@ export const RestaurantProvider = ({ children }) => {
         }
     };
 
+    const restaurantLogout =  () => {
+        try {
+            localStorage.removeItem("@TOKEN");
+            localStorage.removeItem("@RESTAURANTID");
+            setToken("");
+            setRestaurantId(0);
+            setRestaurant(null);
+            toast.success("Logout realizado com sucesso!");
+            navigate("/restaurants/login");
+        } catch (error) {
+            toast.error("Erro ao sair do perfil do restaurante");
+        }
+    }
+
     const autoLogin = async () => {
         if (token && restaurantId) {
             try {
@@ -94,9 +109,20 @@ export const RestaurantProvider = ({ children }) => {
         }
     };
 
+    const fetchRestaurants = async () => {
+        try {
+            const { data } = await menuAPI.get("/restaurants");
+            setRestaurants(data);
+        } catch (error) {
+            console.error("Erro ao obter lista de restaurantes:", error.response ? error.response.data : error.message);
+            toast.error("Erro ao obter lista de restaurantes");
+        }
+    };
+
 
     useEffect(() => {
         autoLogin();
+        fetchRestaurants();
     }, []);
 
     if (loading) {
@@ -111,8 +137,10 @@ export const RestaurantProvider = ({ children }) => {
             restaurantRegister,
             restaurantLogin,
             restaurantUpdate,
+            restaurantLogout,
             editRestaurant,
-            setEditRestaurant
+            setEditRestaurant,
+            restaurants
         }}>
             {children}
         </RestaurantContext.Provider>

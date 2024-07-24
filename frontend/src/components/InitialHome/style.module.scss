@@ -1,11 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
 .initialHome {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    background: #d4d4d4;
+    background: var(--background-primary);
     min-height: calc(100vh - 7rem);
 
     .container {
@@ -13,7 +11,7 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        max-width: 1200px;
+        max-width: 75rem;
         gap: 2rem;
         margin-top: 10rem;
 
@@ -49,9 +47,9 @@
 
     .title {
         font-size: 2rem;
-        color: #333;
+        color: var(--color-primary);
         margin-bottom: 1rem;
-        font-family: 'Poppins', sans-serif;
+        font-family: var(--font-secondary);
         font-weight: 600;
         animation: slideInFromLeft 1s ease-in-out;
         text-align: center;
@@ -61,7 +59,7 @@
         font-size: 1.5rem;
         color: #666;
         margin-bottom: 2rem;
-        font-family: 'Poppins', sans-serif;
+        font-family: var(--font-secondary);
         font-weight: 300;
         animation: slideInFromRight 1s ease-in-out;
         text-align: center;
@@ -92,10 +90,10 @@
 
     .login {
         flex: 1;
-        max-width: 350px;
+        max-width: 21.875rem;
         margin: 0 1rem;
         padding: 2rem;
-        background-color: rgba(255, 255, 255, 0.95);
+        background-color: var(--background-login);
         border-radius: 1rem;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         animation: fadeIn 1.5s ease-in-out;
@@ -117,50 +115,9 @@
         font-size: 1.8rem;
         color: #333;
         margin-bottom: 1rem;
-        font-family: 'Poppins', sans-serif;
+        font-family: var(--font-secondary);
         font-weight: 600;
         text-align: center;
-    }
-
-    .loginForm {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .input {
-            width: 100%;
-            padding: 0.75rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            font-family: 'Poppins', sans-serif;
-            transition: border 0.3s ease;
-
-            &:focus {
-                border: 1px solid #ff7e67;
-                outline: none;
-            }
-        }
-
-        .button {
-            width: 100%;
-            padding: 0.75rem;
-            background-color: #ff7e67;
-            border: none;
-            border-radius: 0.5rem;
-            color: white;
-            font-size: 1rem;
-            font-family: 'Poppins', sans-serif;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            margin-bottom: .500rem;
-
-            &:hover {
-                background-color: #ff6347;
-                transform: scale(1.05);
-            }
-        }
     }
 }
 

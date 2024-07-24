@@ -1,18 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
 .forWhin {
     padding: 4rem 2rem;
     text-align: center;
-    background: #ffffff;
+    background: var(--color-white);
 
     .title {
         font-size: 2.5rem;
-        color: #ec5154;
+        color: var(--color-primary);
         margin-bottom: 2rem;
-        font-family: 'Poppins', sans-serif;
+        font-family: var(--font-secondary);
         font-weight: 700;
         text-transform: uppercase;
-        background: linear-gradient(to right, #ec5154, #ff7e67);
+        background: linear-gradient(to right, var(--color-primary), #ff7e67);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: fadeIn 1.5s ease-in-out;
@@ -35,7 +33,7 @@
         border-radius: 1rem;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         padding: 2rem;
-        max-width: 300px;
+        max-width: 18.75rem;
         text-align: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
@@ -57,7 +55,7 @@
         .cardFooter {
             font-size: 1.1rem;
             color: #333;
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-primary);
             font-weight: 400;
             margin-top: 1rem;
         }

@@ -1,9 +1,9 @@
 .footer {
-    background: linear-gradient(135deg, #ff7e67, #feb47b);
+    background: linear-gradient(135deg, var(--color-primary), #feb47b);
     padding: 2rem 0;
     text-align: center;
     color: #fff;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-secondary);
     margin-top: 3.75rem;
 
     .navList {

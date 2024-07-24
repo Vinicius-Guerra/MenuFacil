@@ -1,18 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-
 .profileSection {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #f5f5f5;
+    background-color: var(--background-profile);
 }
 
 .profileCard {
-    background-color: #fff;
+    background-color: var(--color-white);
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: .5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     max-width: 37.5rem;
@@ -21,7 +18,7 @@
 }
 
 .profileCard h2 {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-secondary);
     margin-bottom: 1rem;
     font-size: 1.5rem;
     color: #333;
@@ -35,15 +32,15 @@
 }
 
 .profileCard h3 {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-secondary);
     font-size: 2rem;
-    color: #ec5154;
+    color: var(--color-primary);
     margin: 2rem;
 }
 
 .profileCard p {
     color: #666;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-secondary);
 }
 
 nav ul {
@@ -56,23 +53,23 @@ nav ul {
 }
 
 nav ul li {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-secondary);
     cursor: pointer;
     font-weight: bold;
     font-size: 1.2rem;
     color: #666;
     transition: color 0.3s ease;
-}
-
-nav ul li:hover {
-    color: #ff5a3c;
+    
+    &:hover {
+        color: #ff5a3c;
+    }
 }
 
 .profileSection {
     padding: 1.25rem;
 
     h1 {
-        font-family: 'Poppins', sans-serif;
+        font-family: var(--font-secondary);
         font-size: 2rem;
         font-weight: bold;
         color: #666;
@@ -105,7 +102,7 @@ nav ul li:hover {
         }
     
         h2 {
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-secondary);
             font-size: 2rem;
             color: #333;
             margin: 0;

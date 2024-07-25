@@ -33,6 +33,13 @@ export class RestaurantControllers {
         return res.status(200).json(response);
     }
 
+    async getRestaurantPublic(req: Request, res: Response): Promise<Response<TRestaurantReturn>> {
+        const { id } = req.params;
+        const response = await this.restaurantServices.getRestaurant(id);
+
+        return res.status(200).json(response);
+    }
+
     async getManyRestaurants(req: Request, res: Response): Promise<Response<TPublicRestaurant[]>> {
         const response = await this.restaurantServices.getManyRestaurants();
 

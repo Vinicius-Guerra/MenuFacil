@@ -33,6 +33,11 @@ export const HeaderMenus = () => {
                         </Link>
                     </li>
                     <li>
+                        <Link className={style.link} to="/menus">
+                            <p>Ver menus</p>
+                        </Link>
+                    </li>
+                    <li>
                         <Link className={style.link} to="/restaurants/login">
                             <p>Voltar</p>
                         </Link>

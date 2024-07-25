@@ -14,7 +14,7 @@ export const Footer = () => {
             <nav>
                 <ul className={style.navList}>
                     <li>
-                        <Link to={"/#"} className={style.navLink}>
+                        <Link to={"/menus"} className={style.navLink}>
                             Cardápios
                         </Link>
                     </li>

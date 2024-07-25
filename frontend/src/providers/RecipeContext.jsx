@@ -36,7 +36,6 @@ export const RecipeProvider = ({ children }) => {
     };
 
     const addRecipe = async (recipe) => {
-        // Converter price para número
         const formattedRecipe = {
             ...recipe,
             price: Number(recipe.price)

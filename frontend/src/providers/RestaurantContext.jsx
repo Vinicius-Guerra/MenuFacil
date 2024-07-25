@@ -119,6 +119,17 @@ export const RestaurantProvider = ({ children }) => {
         }
     };
 
+    const fetchRestaurantById = async (id) => {
+        try {
+            const { data } = await menuAPI.get(`/restaurants/${id}`);
+            return data;
+        } catch (error) {
+            console.error("Erro ao obter restaurante:", error.response ? error.response.data : error.message);
+            toast.error("Erro ao obter restaurante");
+            return null;
+        }
+    };
+
 
     useEffect(() => {
         autoLogin();
@@ -140,7 +151,8 @@ export const RestaurantProvider = ({ children }) => {
             restaurantLogout,
             editRestaurant,
             setEditRestaurant,
-            restaurants
+            restaurants,
+            fetchRestaurantById
         }}>
             {children}
         </RestaurantContext.Provider>

@@ -1,3 +1,4 @@
+import { Footer } from "../../components/Footer";
 import { HeaderMenus } from "../../components/HeaderMenus";
 import { ListRestaurants } from "../../components/ListRestaurants";
 import { MenusTitles } from "../../components/MenusTitles";
@@ -11,6 +12,7 @@ export const MenusPublicPage = () => {
                 <MenusTitles />
                 <ListRestaurants />
             </main>
+            <Footer />
         </>
     )
 }

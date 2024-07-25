@@ -44,6 +44,11 @@ export const Header = () => {
                             <p>Pra quem é?</p>
                         </Link>
                     </li>
+                    <li>
+                        <Link className={style.link} to="/menus">
+                            <p>Ver menus</p>
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </header>

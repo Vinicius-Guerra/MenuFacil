@@ -4,6 +4,7 @@ import { RegisterPage } from "../pages/RegisterPage"
 import { ProfilePage } from "../pages/ProfilePage"
 import { useRestaurantContext } from "../providers/RestaurantContext";
 import { MenusPublicPage } from "../pages/MenusPublicPage";
+import { RestaurantMenuPublic } from "../pages/RestaurantMenuPublic";
 
 const ProtectedRoute = ({ children }) => {
     const { token } = useRestaurantContext();
@@ -18,6 +19,7 @@ export const RoutesMain = () => {
             <Route path="/restaurants" element={<RegisterPage />} />
             <Route path="/restaurants/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
             <Route path="/menus" element={<MenusPublicPage />}/>
+            <Route path="/restaurants/:restaurantId/menu" element={<RestaurantMenuPublic />}/>
         </Routes>
     )
 }

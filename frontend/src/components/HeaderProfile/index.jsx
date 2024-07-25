@@ -2,14 +2,19 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./style.module.scss";
 import { useRestaurantContext } from "../../providers/RestaurantContext";
+import { SupportModal } from "../SupportModal";
 
 export const HeaderProfile = () => {
+    const [isModalOpen, setModalOpen] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const { restaurantLogout } = useRestaurantContext();
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
+
+    const openModal = () => setModalOpen(true);
+    const closeModal = () => setModalOpen(false);
 
     return (
         <header className={style.container}>
@@ -25,18 +30,13 @@ export const HeaderProfile = () => {
             <nav className={menuOpen ? style.open : ""}>
                 <ul>
                     <li>
-                        <Link className={style.link} to="/restaurants/login">
-                            <p>Meu Menu</p>
+                        <Link className={style.link} onClick={openModal}>
+                            <p>Suporte</p>
                         </Link>
                     </li>
                     <li>
-                        <Link className={style.link} to="/restaurants">
-                            <p>Cadastrar receita</p>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link className={style.link} to="/#">
-                            <p>Cadastrar categoria</p>
+                        <Link className={style.link} to="/menus">
+                            <p>Ver menus</p>
                         </Link>
                     </li>
                     <li>
@@ -46,6 +46,7 @@ export const HeaderProfile = () => {
                     </li>
                 </ul>
             </nav>
+            <SupportModal isOpen={isModalOpen} onClose={closeModal} />
         </header>
     );
 };

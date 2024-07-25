@@ -29,7 +29,7 @@ export const HeaderMenus = () => {
                     </li>
                     <li>
                         <Link className={style.link} to="/restaurants">
-                            <p>Cadastrar meu restaurante</p>
+                            <p>Cadastrar meu negócio</p>
                         </Link>
                     </li>
                     <li>

@@ -1,13 +1,20 @@
 import { Link } from "react-router-dom";
 import style from "./style.module.scss";
+import { useState } from "react";
+import { SupportModal } from "../SupportModal";
 
 export const Footer = () => {
+    const [isModalOpen, setModalOpen] = useState(false);
+
     const scrollToSection = (sectionId) => {
         const section = document.getElementById(sectionId);
         if(section) {
             section.scrollIntoView({ behavior: "smooth" });
         }
     };
+
+    const openModal = () => setModalOpen(true);
+    const closeModal = () => setModalOpen(false);
 
     return (
         <footer className={style.footer}>
@@ -19,7 +26,7 @@ export const Footer = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to={"/#"} className={style.navLink}>
+                        <Link className={style.navLink} onClick={openModal}>
                             Suporte
                         </Link>
                     </li>
@@ -36,6 +43,7 @@ export const Footer = () => {
                 </ul>
             </nav>
             <p className={style.footerText}>Projeto criado por Vinicius Guerra &copy;</p>
+            <SupportModal isOpen={isModalOpen} onClose={closeModal} />
         </footer>
     );
 };

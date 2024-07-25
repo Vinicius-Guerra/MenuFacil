@@ -11,7 +11,7 @@ export const SupportModal = ({ isOpen, onClose }) => {
                 <p>Entre em contato agora mesmo com o time do MenuFácil através do</p>
                 <p>WhatsApp - <strong>(81) 98182-9801</strong> ou clique no botão abaixo:</p>
                 <div className={style.buttons}>
-                    <a href="wa.me/5581981829801" target="_blank" className={style.supportLink}>
+                    <a href="https://wa.me/5581981829801" target="_blank"  rel="noopener noreferrer" className={style.supportLink}>
                         Falar com suporte!
                     </a>
                     <a className={style.close} onClick={onClose}>Fechar</a>

@@ -21,7 +21,7 @@ export const RecipeProvider = ({ children }) => {
             setRecipes(response.data);
             return response.data;
         } catch (error) {
-            console.error("Error fetching recipes", error);
+            // console.error("Error fetching recipes", error);
             return [];
         }
     };
@@ -41,14 +41,14 @@ export const RecipeProvider = ({ children }) => {
             price: Number(recipe.price)
         };
 
-        console.log("Enviando receita para criação:", formattedRecipe);
+        // console.log("Enviando receita para criação:", formattedRecipe);
 
         try {
             const { data } = await menuAPI.post("/recipes", formattedRecipe, authHeader);
             setRecipes([...recipes, data]);
             toast.success("Receita adicionada com sucesso!");
         } catch (error) {
-            console.error("Erro ao adicionar receita:", error);
+            // console.error("Erro ao adicionar receita:", error);
             if (error.response && error.response.status === 409) {
                 toast.error("Receita já existe ou conflito de dados.");
             } else {
@@ -68,7 +68,7 @@ export const RecipeProvider = ({ children }) => {
             setRecipes(recipes.map(recipe => recipe.id === recipeId ? data : recipe));
             toast.success("Receita editada com sucesso!");
         } catch (error) {
-            console.error("Erro ao editar receita:", error);
+            // console.error("Erro ao editar receita:", error);
             toast.error("Não foi possível editar a receita.");
         }
     };
@@ -79,7 +79,7 @@ export const RecipeProvider = ({ children }) => {
             setRecipes(recipes.filter(recipe => recipe.id !== recipeId));
             toast.success("Receita deletada com sucesso!");
         } catch (error) {
-            console.error("Erro ao deletar receita:", error);
+            // console.error("Erro ao deletar receita:", error);
             toast.error("Não foi possível deletar a receita.");
         }
     };

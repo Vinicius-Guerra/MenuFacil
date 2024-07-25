@@ -28,23 +28,24 @@ export const RestaurantProvider = ({ children }) => {
 
     const restaurantRegister = async (payload) => {
         try {
-            const { data } = await menuAPI.post("/restaurants", payload);
+            // const { data } = await menuAPI.post("/restaurants", payload);
+            await menuAPI.post("/restaurants", payload);
             toast.success("Conta criada com sucesso!");
             navigate("/restaurants/login");
-            console.log(data);
+            // console.log(data);
         } catch (error) {
-            console.log(error.response ? error.response.data : error.message);
+            // console.log(error.response ? error.response.data : error.message);
             toast.error("Ops! Algo deu errado.");
         }
     }
 
     const restaurantLogin = async (payload) => {
         try {
-            console.log("Login Payload:", payload);
+            // console.log("Login Payload:", payload);
             const { data } = await menuAPI.post(`/restaurants/login`, payload, {
                 withCredentials: true,
             });
-            console.log("Login Response:", data);
+            // console.log("Login Response:", data);
 
             localStorage.setItem("@TOKEN", data.accessToken);
             localStorage.setItem("@RESTAURANTID", data.restaurant.id);
@@ -55,7 +56,7 @@ export const RestaurantProvider = ({ children }) => {
             toast.success("Login realizado com sucesso!");
             navigate("/restaurants/profile");
         } catch (error) {
-            console.error("Login Error:", error.response ? error.response.data : error.message);
+            // console.error("Login Error:", error.response ? error.response.data : error.message);
             toast.error("Credenciais inválidas");
         }
     };
@@ -69,7 +70,7 @@ export const RestaurantProvider = ({ children }) => {
             setRestaurant(data)
             toast.success("Seu perfil foi atualizado com sucesso.");
         } catch (error) {
-            console.error("Erro ao atualizar restaurante:", error.response ? error.response.data : error.message);
+            // console.error("Erro ao atualizar restaurante:", error.response ? error.response.data : error.message);
             toast.error("Erro ao atualizar restaurante");
         }
     };
@@ -95,7 +96,7 @@ export const RestaurantProvider = ({ children }) => {
                 setRestaurant(data);
                 navigate("/restaurants/profile");
             } catch (error) {
-                console.error("AutoLogin Error:", error.response ? error.response.data : error.message);
+                // console.error("AutoLogin Error:", error.response ? error.response.data : error.message);
                 localStorage.removeItem("@TOKEN");
                 localStorage.removeItem("@RESTAURANTID");
                 setToken("");
@@ -114,7 +115,7 @@ export const RestaurantProvider = ({ children }) => {
             const { data } = await menuAPI.get("/restaurants");
             setRestaurants(data);
         } catch (error) {
-            console.error("Erro ao obter lista de restaurantes:", error.response ? error.response.data : error.message);
+            // console.error("Erro ao obter lista de restaurantes:", error.response ? error.response.data : error.message);
             toast.error("Erro ao obter lista de restaurantes");
         }
     };
@@ -124,7 +125,7 @@ export const RestaurantProvider = ({ children }) => {
             const { data } = await menuAPI.get(`/restaurants/${id}`);
             return data;
         } catch (error) {
-            console.error("Erro ao obter restaurante:", error.response ? error.response.data : error.message);
+            // console.error("Erro ao obter restaurante:", error.response ? error.response.data : error.message);
             toast.error("Erro ao obter restaurante");
             return null;
         }

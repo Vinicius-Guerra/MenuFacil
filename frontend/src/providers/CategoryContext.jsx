@@ -21,7 +21,7 @@ export const CategoryProvider = ({ children }) => {
             const response = await menuAPI.get(`/categories/${restaurantId}`, authHeader);
             setCategories(response.data);
         } catch (error) {
-            console.error("Error fetching categories", error);
+            // console.error("Error fetching categories", error);
             toast.error("Erro ao carregar categorias.");
             setError(error);
         }
@@ -42,13 +42,23 @@ export const CategoryProvider = ({ children }) => {
             setCategories((prev) => [...prev, data]);
             toast.success("Categoria criada com sucesso!");
         } catch (error) {
-            console.error("Erro ao criar categoria:", error.response ? error.response.data : error.message);
+            // console.error("Erro ao criar categoria:", error.response ? error.response.data : error.message);
             toast.error("Erro ao criar categoria");
         }
     };
 
+    const deleteCategory = async (categoryId) => {
+        try {
+            await menuAPI.delete(`/categories/${categoryId}`, authHeader);
+            setCategories(categories.filter(categories => categories.id !== categoryId));
+            toast.success("Categoria deletada com sucesso!");
+        } catch (error) {
+            toast.error("Não foi possível deletar a categoria.");
+        }
+    }
+
     return (
-        <CategoryContext.Provider value={{ categories, fetchCategoriesByRestaurant, fetchCategories, addCategory }}>
+        <CategoryContext.Provider value={{ categories, fetchCategoriesByRestaurant, fetchCategories, addCategory, deleteCategory }}>
             {children}
         </CategoryContext.Provider>
     );

@@ -5,6 +5,7 @@ Este é o backend da nossa aplicação web, desenvolvido usando Node.js, TypeScr
 
 ## Tecnologias Utilizadas
 - Node.js
+- TypeScript
 - Express
 - Prisma (ORM)
 - PostgreSQL (banco de dados)

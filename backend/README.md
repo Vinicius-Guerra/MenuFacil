@@ -1,7 +1,5 @@
 # Backend da Aplicação
 
-# Backend da Aplicação
-
 ## Visão Geral
 Este é o backend da nossa aplicação web, desenvolvido usando Node.js, TypeScript, Prisma e JEST. Ele fornece uma API RESTful para o frontend e gerencia a lógica de negócios e o acesso ao banco de dados.
 

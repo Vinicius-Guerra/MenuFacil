@@ -86,9 +86,11 @@ JWT_SECRET=your_jwt_secret
 - `dev`: Inicia o servidor.
 - `migrate:dev`: Migrações no ambiente de desenvolvimento.
 - `migrate:test`: Migrações no ambiente de teste.
+- `migrate:deploy`: Migrações no deploy.
 - `test:unit`: Roda os testes unitários.
 - `test:integration`: Roda os testes de integração.
 - `prisma:studio`: Abre o prisma studio no navegador.
+- `build`: Transpila TypeScript em JavaScript.
 
 ## Deploy
 

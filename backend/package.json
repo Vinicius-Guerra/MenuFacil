@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Aplicação para cadastro e gestão de cardápios com praticidade.",
   "main": "index.js",
+  "engines":{
+    "node": "18"
+  },
   "scripts": {
     "start": "node dist/app.js",
     "build": "npx tsc",

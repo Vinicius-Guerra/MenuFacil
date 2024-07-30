@@ -15,36 +15,36 @@ export const deleteRecipeBeforeEach = async () => {
 
 describe("Integration test: delete recipe", () => {
    it("should be able to delete a recipe successfully", async () => {
-      const { token, recipe } = await deleteRecipeBeforeEach();
+      const { token, recipe, restaurant } = await deleteRecipeBeforeEach();
 
       await request
-         .delete(`/recipes/${recipe.id}`)
+         .delete(`/recipes/restaurante/${restaurant.id}/${recipe.id}`)
          .set("Authorization", `Bearer ${token}`)
          .expect(204);
    });
 
    it("should throw error when there is no token", async () => {
-      const { recipe } = await deleteRecipeBeforeEach();
+      const { recipe, restaurant } = await deleteRecipeBeforeEach();
 
-      await request.delete(`/recipes/${recipe.id}`).expect(401);
+      await request.delete(`/recipes/restaurante/${restaurant.id}/${recipe.id}`).expect(401);
    });
 
    it("should throw error when token is invalid", async () => {
-      const { recipe } = await deleteRecipeBeforeEach();
+      const { recipe, restaurant } = await deleteRecipeBeforeEach();
 
       const token = invalidToken();
 
       await request
-         .delete(`/recipes/${recipe.id}`)
+         .delete(`/recipes/restaurante/${restaurant.id}/${recipe.id}`)
          .set("Authorization", `Bearer ${token}`)
          .expect(401);
    });
 
    it("should throw error when recipe id is invalid", async () => {
-      const { token } = await deleteRecipeBeforeEach();
+      const { token, restaurant, recipe } = await deleteRecipeBeforeEach();
 
       const data = await request
-         .delete("/recipes/2bf43bce-98c0-48db-82a5-69453aafdf3e")
+         .delete(`/recipes/restaurante/${restaurant.id}/12bb`)
          .set("Authorization", `Bearer ${token}`)
          .expect(404)
          .then((response) => response.body);
@@ -53,12 +53,12 @@ describe("Integration test: delete recipe", () => {
    });
 
    it("should throw error when restaurant is not the recipe owner", async () => {
-      const { recipe } = await deleteRecipeBeforeEach();
+      const { recipe, restaurant } = await deleteRecipeBeforeEach();
 
       const token = wrongUserToken();
 
       const data = await request
-         .delete(`/recipes/${recipe.id}`)
+         .delete(`/recipes/restaurante/${restaurant.id}/${recipe.id}`)
          .set("Authorization", `Bearer ${token}`)
          .expect(401)
          .then((response) => response.body);

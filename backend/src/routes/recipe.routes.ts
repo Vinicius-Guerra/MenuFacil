@@ -15,7 +15,6 @@ container.registerSingleton("RecipeServices", RecipeServices);
 const recipeControllers = container.resolve(RecipeControllers);
 
 recipeRouter.post("/", ValidateBody.execute(recipeCreateBodySchema), VerifyToken.execute, (req, res) => {
-    console.log("Iniciando criação de receita...");
     recipeControllers.create(req, res);
 });
 

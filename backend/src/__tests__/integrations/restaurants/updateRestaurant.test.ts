@@ -8,7 +8,7 @@ describe("Integration test: update restaurant", () => {
         const { restaurant, token } = await simulateLogin();
 
         const data = await request
-            .patch("/restaurants")
+            .patch(`/restaurants/profile/${restaurant.id}`)
             .set("Authorization", `Bearer ${token}`)
             .send(restaurantUpdatedBodyMock)
             .expect(200)
@@ -26,16 +26,18 @@ describe("Integration test: update restaurant", () => {
     });
 
     it("should throw error when there is no token", async () => {
+        const { restaurant } = await simulateLogin();
         await request
-            .patch("/restaurants")
+            .patch(`/restaurants/profile/${restaurant.id}`)
             .send(restaurantUpdatedBodyMock)
             .expect(401)
     });
 
     it("should throw error when token is invalid", async () => {
+        const { restaurant } = await simulateLogin();
         const token = invalidToken();
         await request
-            .patch("/restaurants")
+            .patch(`/restaurants/profile/${restaurant.id}`)
             .send(restaurantUpdatedBodyMock)
             .set("Authorization", `Bearer ${token}`)
             .expect(401)

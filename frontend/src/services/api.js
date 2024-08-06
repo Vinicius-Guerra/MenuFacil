@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const menuAPI = axios.create({
-  baseURL: "http://localhost:3000",
-  timeout: 8 * 1000,
+  baseURL: process.env.REACT_APP_API_URL,
+  timeout: 10000,
 });
 
 export { menuAPI };

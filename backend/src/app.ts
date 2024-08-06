@@ -1,6 +1,6 @@
+import "dotenv/config";
 import "express-async-errors";
 import "reflect-metadata";
-import "dotenv/config";
 import cors from "cors";
 import express, { json } from "express";
 import helmet from "helmet";
@@ -13,7 +13,7 @@ export const app = express();
 
 //security
 const corsOption = {
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
     credentials: true,
 };
 
